@@ -8,6 +8,7 @@ gwt-react-examples provides examples of how to use the various GWTReact projects
 * [gwt-react](https://github.com/GWTReact/gwt-react) - example [todomvc](https://github.com/GWTReact/gwt-react)
 * [gwt-react-router](https://github.com/GWTReact/gwt-react-router) - example [todomvc](https://github.com/GWTReact/gwt-react)
 * [gwt-redux](https://github.com/GWTReact/gwt-redux) - examples [counter](https://github.com/reactjs/redux/tree/master/examples/counter), [todos with undo](https://github.com/reactjs/redux/tree/master/examples/todos-with-undo)
+* GWT interop with existing Widgets.
 
 If you click on the example links above, you can see the Javascript projects the examples where ported from.
 
