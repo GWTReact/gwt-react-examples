@@ -6,19 +6,20 @@ import gwt.react.shared.utils.Array;
 import gwt.redux.client.Action;
 import gwt.redux.client.Reducer;
 import gwt.redux.client.Redux;
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 import static gwt.react.client.utils.ObjLiteral.$;
 
 public class TodoAppReducer {
 
-    @JsType
+    @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
     public static class State extends ObjLiteral {
         public UndoRedoTodoList todos;
         public String visibilityFilter;
     }
 
-    @JsType
+    @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
     public static class UndoRedoTodoList extends ObjLiteral {
         public Array<TodoState> past;
         public Array<TodoState> present;
