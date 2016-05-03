@@ -13,7 +13,7 @@ import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.br;
 import static gwt.react.client.api.React.DOM.div;
 
-class ChildApi {
+class ChildApiTests {
     static StatelessComponent<BaseProps, BaseContext> countChildrenComponent = (props, context) -> {
         int countChildren = React.Children.count(props.children);
 

@@ -2,16 +2,18 @@ package gwt.react.todo_mvc.client;
 
 import com.google.gwt.dom.client.InputElement;
 import gwt.react.client.api.React;
-import gwt.react.client.components.ReactClassSpec;
 import gwt.react.client.components.ReactClass;
+import gwt.react.client.components.ReactClassSpec;
 import gwt.react.client.elements.ReactElement;
-import gwt.react.client.events.*;
-import gwt.react.client.proptypes.*;
+import gwt.react.client.events.FormEvent;
+import gwt.react.client.events.KeyboardEvent;
+import gwt.react.client.events.MouseEvent;
+import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.HtmlProps;
 import gwt.react.client.proptypes.html.InputProps;
 import gwt.react.client.proptypes.html.attributeTypes.InputType;
-import gwt.react.shared.utils.Array;
 import gwt.react.client.utils.ObjLiteral;
+import gwt.react.shared.utils.Array;
 import gwt.react_router.client.HistoryLocation;
 import gwt.react_router.client.RouterEnhancedProps;
 import jsinterop.annotations.JsPackage;
@@ -135,7 +137,7 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
         Integer activeTodoCount = todos.reduce((accum, currentValue, index, theArray) ->
                 currentValue.completed ? accum : accum + 1, 0);
 
-        int completedCount = todos.length() - activeTodoCount;
+        int completedCount = todos.getLength() - activeTodoCount;
 
         if (activeTodoCount > 0 || completedCount > 0) {
             Footer.FooterProps footerProps = new Footer.FooterProps();
@@ -147,7 +149,7 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
             footer = React.createElement(Footer.component, footerProps);
         }
 
-        if (todos.length() > 0) {
+        if (todos.getLength() > 0) {
             main = section(new HtmlProps().className("header"),
                         input(new InputProps().className("toggle-all").type(InputType.checkbox).onChange(this::handleToggleAll)),
                         ul(new HtmlProps().className("todo-list"),

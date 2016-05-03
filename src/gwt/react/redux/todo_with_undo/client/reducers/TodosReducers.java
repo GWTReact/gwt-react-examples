@@ -41,7 +41,7 @@ public class TodosReducers {
 
     private static Reducer<Array<TodoState>, TodoAction> _todos = (state, action) -> {
         if (state == null)
-            state = JSArray.createJsArray();
+            state = JSArray.create();
 
         switch (action.type) {
             case Actions.ADD_TODO:

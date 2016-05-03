@@ -24,8 +24,8 @@ class TodoModel {
         }
     }
 
-    Array<Todo> todos = JSArray.createJsArray();
-    private Array<JSFunc> onChanges = JSArray.createJsArray();
+    Array<Todo> todos = JSArray.create();
+    private Array<JSFunc> onChanges = JSArray.create();
 
     void subscribe(JSFunc onChange) {
         onChanges.push(onChange);

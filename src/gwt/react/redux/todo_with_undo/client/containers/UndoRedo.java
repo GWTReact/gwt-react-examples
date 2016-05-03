@@ -36,8 +36,8 @@ public class UndoRedo {
 
     private static MapStateToPropsFn<TodoAppReducer.State, Props> mapStateToPropsFn = (state, ownProps) ->
             $(new ObjLiteral(),
-                    "canUndo", state.todos.past.length() > 0,
-                    "canRedo", state.todos.future.length() > 0);
+                    "canUndo", state.todos.past.getLength() > 0,
+                    "canRedo", state.todos.future.getLength() > 0);
 
     private static MapDispatchToPropsFn<BaseProps> mapDispatchToProps = (dispatch, ownProps) -> {
         JSFunc onUndo = () -> dispatch.forward(ReduxUndo.ActionCreators.undo());
