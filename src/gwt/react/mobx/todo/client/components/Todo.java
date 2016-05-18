@@ -1,0 +1,32 @@
+package gwt.react.mobx.todo.client.components;
+
+import gwt.mobx.client.MobXReact;
+import gwt.react.client.components.StatelessComponent;
+import gwt.react.client.proptypes.BaseContext;
+import gwt.react.client.proptypes.BaseProps;
+import gwt.react.client.proptypes.html.CssProps;
+import gwt.react.client.proptypes.html.HtmlProps;
+import gwt.react.client.utils.JSFunc;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
+
+import static gwt.react.client.api.React.DOM.li;
+
+public class Todo {
+
+    @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+    public static class Props extends BaseProps {
+        public JSFunc onClickToToggle;
+        public boolean completed;
+        public String text;
+    }
+
+    public static StatelessComponent<Props, BaseContext> component = MobXReact.observer((props, context) -> {
+        return
+            li(new HtmlProps()
+                   .style(new CssProps()
+                        .textDecoration(props.completed ? "line-through" : "none"))
+                   .onClick((e) -> props.onClickToToggle.call()),
+               props.text);
+    });
+}

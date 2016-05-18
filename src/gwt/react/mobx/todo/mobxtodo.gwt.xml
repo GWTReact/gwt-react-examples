@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='mobxtodo'>
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User' />
+    <inherits name="gwt.react.React" />
+    <inherits name="gwt.mobx.Mobx" />
+
+    <set-property name="user.agent" value="safari"/>
+    <!-- <set-property name="jre.checks.checkLevel" value="MINIMAL" /> -->
+
+    <!-- Specify the app entry point class.                         -->
+    <entry-point class='gwt.react.mobx.todo.client.Index' />
+
+    <!-- Specify the paths for translatable code                    -->
+    <source path='client' />
+
+    <add-linker name="xsiframe"/>
+    <set-configuration-property name="devModeRedirectEnabled" value="true"/>
+    <set-property name="compiler.useSourceMaps" value="true" />
+</module>
