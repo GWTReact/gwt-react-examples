@@ -4,6 +4,11 @@
 # Package Files #
 *.jar
 *.war
+war
+
+# Gradle stuff
+.gradle/
+build/
 
 # gwt caches and compiled units #
 war/gwt_bree/

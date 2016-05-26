@@ -1,0 +1,106 @@
+apply plugin: 'war'
+apply plugin: 'cargo'
+apply plugin: 'jetty'
+apply plugin: "java"
+apply plugin: "gwt"
+apply plugin: "eclipse"
+
+buildscript {
+    repositories {
+        jcenter() //repository where to fetch gwt gradle plugin
+    }
+    dependencies {
+        classpath "de.richsource.gradle.plugins:gwt-gradle-plugin:0.6" // GWT
+        classpath 'org.gradle.api.plugins:gradle-cargo-plugin:0.6.1'
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/google-snapshots/"
+    }
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+webAppDirName="web"
+
+sourceSets {
+    main {
+        java {
+            srcDir "src"
+        }
+    }
+}
+
+dependencies {
+    def cargoVersion = '1.4.4'
+    cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion",
+            "org.codehaus.cargo:cargo-ant:$cargoVersion"
+}
+
+gwt {
+    gwtVersion "2.8.0-SNAPSHOT"
+
+    eclipse.addGwtContainer = false;
+
+    minHeapSize = "512M";
+    maxHeapSize = "4096M";
+
+    modules 'gwt.react.api_sanity_test.apisanitytest'
+    modules 'gwt.react.todo_mvc.todomvc'
+    modules 'gwt.react.mobx.api_test.mobxapitest'
+    modules 'gwt.react.mobx.todo.mobxtodo'
+    modules 'gwt.react.redux.counter.counter'
+    modules 'gwt.react.redux.todo_with_undo.todowithundo'
+
+    dependencies {
+        gwt group: 'com.github.gwtreact', name: 'gwt-react', version: '0.1.0'
+        gwt group: 'com.github.gwtreact', name: 'gwt-redux', version: '0.1.1'
+        gwt group: 'com.github.gwtreact', name: 'gwt-mobx', version: '0.1.0'
+        gwt group: 'com.github.gwtreact', name: 'gwt-react-router', version: '0.1.1'
+    }
+
+    superDev {
+        noPrecompile=true
+    }
+}
+
+tasks.withType(de.richsource.gradle.plugins.gwt.AbstractGwtActionTask) {
+    //args "-logLevel", "TRACE"
+    args "-generateJsInteropExports"
+    //args "-XmethodNameDisplayMode ABBREVIATED"
+    // I've had various problems with this cache and GWT snapshot updates, so it's a good idea to make it easily cleanable
+    jvmArgs("-Dgwt.persistentunitcachedir=$project.buildDir/gwt/cache")
+}
+
+cargo {
+    containerId = 'jetty9x'
+    port = 8080
+
+    deployable {
+        file = tasks.draftWar.archivePath
+        context = 'app'
+    }
+
+    local {
+        installer {
+            installUrl = file("$projectDir/etc/jetty-distribution-9.0.5.v20130815.zip").toURI()
+            downloadDir = file("$buildDir/download")
+            extractDir = file("$buildDir/extract")
+        }
+    }
+}
+
+task jettyDraftWar(type: JettyRunWar) {
+    dependsOn draftWar
+    dependsOn.remove('war')
+    webApp=draftWar.archivePath
+}
+
+afterEvaluate {
+    tasks.cargoStartLocal.dependsOn(tasks.draftWar)
+    tasks.cargoRunLocal.dependsOn(tasks.draftWar)
+}
