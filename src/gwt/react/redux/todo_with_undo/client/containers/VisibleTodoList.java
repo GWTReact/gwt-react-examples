@@ -1,19 +1,19 @@
 package gwt.react.redux.todo_with_undo.client.containers;
 
+import gwt.interop.utils.shared.functional.JsConsumer;
+import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.components.StatelessComponent;
 import gwt.react.client.proptypes.BaseContext;
-import gwt.react.client.utils.JSFunc1Arg;
-import gwt.react.client.utils.ObjLiteral;
 import gwt.react.redux.todo_with_undo.client.actions.Actions;
 import gwt.react.redux.todo_with_undo.client.components.TodoList;
 import gwt.react.redux.todo_with_undo.client.reducers.TodoAppReducer.State;
 import gwt.react.redux.todo_with_undo.client.reducers.TodosReducers;
-import gwt.react.shared.utils.Array;
 import gwt.redux.client.addons.react_redux.MapDispatchToPropsFn;
 import gwt.redux.client.addons.react_redux.MapStateToPropsFn;
 import gwt.redux.client.addons.react_redux.ReactRedux;
 
-import static gwt.react.client.utils.ObjLiteral.$;
+import static gwt.interop.utils.client.plainobjects.JsPlainObj.$jsPlainObj;
+
 
 public class VisibleTodoList {
 
@@ -29,12 +29,12 @@ public class VisibleTodoList {
     }
 
     private static MapStateToPropsFn<State, TodoList.Props> mapStateToPropsFn = (state, ownProps) ->
-            $(new ObjLiteral(), "todos", getVisibleTodos(state.todos.present, state.visibilityFilter));
+            $jsPlainObj("todos", getVisibleTodos(state.todos.present, state.visibilityFilter));
 
     private static MapDispatchToPropsFn<TodoList.Props> mapDispatchToProps = (dispatch, ownProps) -> {
-        JSFunc1Arg<Integer> onClick = (id) -> dispatch.forward(Actions.toggleTodo(id));
+        JsConsumer<Integer> onClick = (id) -> dispatch.forward(Actions.toggleTodo(id));
 
-        return $(new ObjLiteral(), "onTodoClick", onClick);
+        return $jsPlainObj("onTodoClick", onClick);
     };
 
     public static StatelessComponent<TodoList.Props, BaseContext> component =

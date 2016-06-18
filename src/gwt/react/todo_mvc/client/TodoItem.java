@@ -1,6 +1,8 @@
 package gwt.react.todo_mvc.client;
 
 import com.google.gwt.dom.client.InputElement;
+import gwt.interop.utils.shared.functional.JsBiConsumer;
+import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.react.client.api.React;
 import gwt.react.client.components.ReactClassSpec;
 import gwt.react.client.components.ReactClass;
@@ -12,14 +14,11 @@ import gwt.react.client.proptypes.html.HtmlProps;
 import gwt.react.client.proptypes.html.InputProps;
 import gwt.react.client.proptypes.html.LabelProps;
 import gwt.react.client.proptypes.html.attributeTypes.InputType;
-import gwt.react.client.utils.Classnames;
-import gwt.react.client.utils.JSFunc2Args;
-import gwt.react.client.utils.ObjLiteral;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
+import static gwt.interop.utils.client.plainobjects.JsPlainObj.$;
 import static gwt.react.client.api.React.DOM.*;
-import static gwt.react.client.utils.ObjLiteral.$;
 
 @JsType
 class TodoItem extends ReactClassSpec<TodoItem.TodoItemProps, TodoItem.TodoState> {
@@ -28,12 +27,12 @@ class TodoItem extends ReactClassSpec<TodoItem.TodoItemProps, TodoItem.TodoState
     static class TodoItemProps extends BaseProps {
         TodoModel.Todo todo;
         boolean isEditing;
-        JSFunc2Args<TodoModel.Todo, String> doSave;
-        JSFunc2Args<TodoList.Action, TodoModel.Todo> doAction;
+        JsBiConsumer<TodoModel.Todo, String> doSave;
+        JsBiConsumer<TodoList.Action, TodoModel.Todo> doAction;
     }
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
-    static class TodoState extends ObjLiteral {
+    static class TodoState extends JsPlainObj {
         String editText;
     }
 
@@ -44,23 +43,23 @@ class TodoItem extends ReactClassSpec<TodoItem.TodoItemProps, TodoItem.TodoState
     private void submitTodo(FocusEvent event) {
         String val = getState().editText;
         if (val != null && !val.isEmpty()) {
-            getProps().doSave.call(getProps().todo, val);
+            getProps().doSave.accept(getProps().todo, val);
 
             setState(newTodoItemState(val));
         } else {
-            getProps().doAction.call(TodoList.Action.DESTROY, getProps().todo);
+            getProps().doAction.accept(TodoList.Action.DESTROY, getProps().todo);
         }
     }
 
     private void handleEdit(MouseEvent event) {
-        getProps().doAction.call(TodoList.Action.EDIT, getProps().todo);
+        getProps().doAction.accept(TodoList.Action.EDIT, getProps().todo);
         setState(newTodoItemState(getProps().todo.title));
     }
 
     private void handleKeyDown(KeyboardEvent event) {
         if (event.which == App.ESCAPE_KEY) {
             setState(newTodoItemState(getProps().todo.title));
-            getProps().doAction.call(TodoList.Action.CANCEL, getProps().todo);
+            getProps().doAction.accept(TodoList.Action.CANCEL, getProps().todo);
         } else if (event.which == App.ENTER_KEY) {
             submitTodo(null);
         }
@@ -114,9 +113,9 @@ class TodoItem extends ReactClassSpec<TodoItem.TodoItemProps, TodoItem.TodoState
                         Classnames.get("completed", props.todo.completed, "editing", props.isEditing)),
                         div(new HtmlProps().className("view"),
                                 input(new InputProps().className("toggle").type(InputType.checkbox).checked(props.todo.completed)
-                                        .onChange((event) -> props.doAction.call(TodoList.Action.TOGGLE, getProps().todo))),
+                                        .onChange((event) -> props.doAction.accept(TodoList.Action.TOGGLE, getProps().todo))),
                                 label(new LabelProps().OnDoubleClick(this::handleEdit), props.todo.title),
-                                button(new BtnProps().className("destroy").onClick((event) -> props.doAction.call(TodoList.Action.DESTROY, getProps().todo)))
+                                button(new BtnProps().className("destroy").onClick((event) -> props.doAction.accept(TodoList.Action.DESTROY, getProps().todo)))
                         ),
                         input(new InputProps().ref("editField")
                                 .className("edit")

@@ -2,11 +2,11 @@ package gwt.react.todo_mvc.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Document;
+import gwt.interop.utils.client.collections.JsArray;
+import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
 import gwt.react.client.elements.ReactElement;
-import gwt.react.client.utils.JSArray;
-import gwt.react.shared.utils.Array;
 import gwt.react_router.client.ReactRouter;
 import gwt.react_router.client.RouteProps;
 import gwt.react_router.client.RouterProps;
@@ -21,7 +21,7 @@ public class App implements EntryPoint {
     static final int ENTER_KEY = 13;
 
     static TodoModel model = new TodoModel();
-    static Array<ReactElement> routes = JSArray.create();
+    static Array<ReactElement> routes = JsArray.create();
 
     private void render() {
         ReactDOM.render(

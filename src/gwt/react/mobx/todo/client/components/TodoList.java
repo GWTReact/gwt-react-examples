@@ -1,11 +1,11 @@
 package gwt.react.mobx.todo.client.components;
 
+import gwt.interop.utils.shared.collections.Array;
 import gwt.mobx.client.MobXReact;
 import gwt.react.client.api.React;
 import gwt.react.client.components.StatelessComponent;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.proptypes.BaseContext;
-import gwt.react.shared.utils.Array;
 
 import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.ul;

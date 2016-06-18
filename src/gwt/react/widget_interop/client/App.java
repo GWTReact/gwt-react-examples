@@ -5,12 +5,10 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import gwt.react.client.api.React;
-import gwt.react.client.components.ReactClass;
 
 
 public class App implements EntryPoint {
     private PopupPanel dialog;
-    private ReactClass<StatefulReactClassSpec.Props> statefulComponent = React.createClass(new StatefulReactClassSpec());
 
     @Override
     public void onModuleLoad() {
@@ -20,10 +18,10 @@ public class App implements EntryPoint {
             //Show a React component in a popup panel
             dialog = new PopupPanel(true);
 
-            StatefulReactClassSpec.Props statefulComp1Props = new StatefulReactClassSpec.Props();
+            StatefulExample.Props statefulComp1Props = new StatefulExample.Props();
             statefulComp1Props.aProp = "Embedded React component 1";
 
-            ReactPanel reactPanel = new ReactPanel(React.createElement(statefulComponent, statefulComp1Props));
+            ReactPanel reactPanel = new ReactPanel(React.createElement(StatefulExample.component, statefulComp1Props));
             reactPanel.setWidth("700px");
             reactPanel.setHeight("700px");
 
@@ -35,10 +33,10 @@ public class App implements EntryPoint {
         RootPanel.get("replaceme").add(button);
 
         //Add React component to Root Panel
-        StatefulReactClassSpec.Props statefulComp2Props = new StatefulReactClassSpec.Props();
+        StatefulExample.Props statefulComp2Props = new StatefulExample.Props();
         statefulComp2Props.aProp = "Embedded React component 2";
 
-        ReactPanel reactPanel = new ReactPanel(React.createElement(statefulComponent, statefulComp2Props));
+        ReactPanel reactPanel = new ReactPanel(React.createElement(StatefulExample.component, statefulComp2Props));
         RootPanel.get("replaceme2").add(reactPanel);
     }
 }

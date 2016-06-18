@@ -8,7 +8,7 @@ import gwt.react.mobx.todo.client.components.App;
 import gwt.react.mobx.todo.client.components.AppStateProps;
 import gwt.react.mobx.todo.client.state.AppState;
 
-import static gwt.react.client.utils.ObjLiteral.$;
+import static gwt.interop.utils.client.plainobjects.JsPlainObj.$;
 
 public class Index implements EntryPoint {
     @Override

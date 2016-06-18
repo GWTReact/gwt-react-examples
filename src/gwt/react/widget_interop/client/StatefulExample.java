@@ -1,13 +1,15 @@
 package gwt.react.widget_interop.client;
 
 import com.google.gwt.dom.client.InputElement;
+import gwt.interop.utils.client.plainobjects.JsPlainObj;
+import gwt.react.client.api.React;
+import gwt.react.client.components.ReactClass;
 import gwt.react.client.components.ReactClassSpec;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.events.FormEvent;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.BtnProps;
 import gwt.react.client.proptypes.html.InputProps;
-import gwt.react.client.utils.ObjLiteral;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
@@ -16,7 +18,7 @@ import static gwt.react.client.api.React.DOM.*;
 
 @SuppressWarnings("unused")
 @JsType
-class StatefulReactClassSpec extends ReactClassSpec<StatefulReactClassSpec.Props, StatefulReactClassSpec.State> {
+class StatefulExample extends ReactClassSpec<StatefulExample.Props, StatefulExample.State> {
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name="Object")
     static class Props extends BaseProps {
@@ -24,7 +26,7 @@ class StatefulReactClassSpec extends ReactClassSpec<StatefulReactClassSpec.Props
     }
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name="Object")
-    static class State extends ObjLiteral {
+    static class State extends JsPlainObj {
         String aStateVar;
 
         @JsOverlay
@@ -63,4 +65,6 @@ class StatefulReactClassSpec extends ReactClassSpec<StatefulReactClassSpec.Props
     private String getDescription() {
         return "Click Me (state=" + getState().aStateVar + ", props=" + getProps().aProp + ")";
     }
+
+    public static ReactClass<Props> component = React.createClass(new StatefulExample());
 }

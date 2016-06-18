@@ -1,11 +1,11 @@
 package gwt.react.mobx.todo.client.state;
 
+import gwt.interop.utils.client.collections.JsArray;
+import gwt.interop.utils.shared.collections.Array;
+import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.mobx.client.MobX;
 import gwt.mobx.client.MobX.*;
 import gwt.mobx.client.ObservableArray;
-import gwt.react.client.utils.JSArray;
-import gwt.react.client.utils.ObjLiteral;
-import gwt.react.shared.utils.Array;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
@@ -19,7 +19,7 @@ public class AppState {
     //object literal. If we don't do this, we would have to define each field value as
     //an ObservableValue
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name="Object")
-    public static class Todo extends ObjLiteral {
+    public static class Todo extends JsPlainObj {
         public int id;
         public String text;
         public boolean completed;
@@ -35,7 +35,7 @@ public class AppState {
     }
 
     private ObservableValue<FilterStatus> filter = MobX.observableValue(FilterStatus.ShowAll);
-    private ObservableArray<Todo> todos = MobX.observable(JSArray.create());
+    private ObservableArray<Todo> todos = MobX.observable(JsArray.create());
 
     private ComputedValue<Array<Todo>> visibleTodos = MobX.computed(() -> todos.filter((todo) -> {
         switch(filter.get()) {

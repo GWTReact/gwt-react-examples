@@ -1,11 +1,11 @@
 package gwt.react.mobx.api_test.client;
 
+import gwt.interop.utils.client.JSON;
+import gwt.interop.utils.shared.collections.Array;
+import gwt.interop.utils.shared.collections.StringMap;
 import gwt.mobx.client.MobX;
 import gwt.mobx.client.MobX.DisposerFunction;
 import gwt.mobx.client.ObservableMap;
-import gwt.react.shared.utils.Array;
-import gwt.react.shared.utils.JSHelper;
-import gwt.react.shared.utils.StringMap;
 
 public class ObservableMapTests {
 
@@ -65,7 +65,7 @@ public class ObservableMapTests {
         disposer.dispose();
 
         StringMap<String> jsMap = testMap.toJs();
-        String s = JSHelper.toJSON(jsMap);
+        String s = JSON.stringify(jsMap);
         assert(s.equals("{\"k1\":\"v1\",\"k2\":\"v2.1\"}"));
     }
 

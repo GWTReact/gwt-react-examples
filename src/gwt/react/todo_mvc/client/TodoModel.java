@@ -1,8 +1,8 @@
 package gwt.react.todo_mvc.client;
 
-import gwt.react.client.utils.JSArray;
-import gwt.react.client.utils.JSFunc;
-import gwt.react.shared.utils.Array;
+import gwt.interop.utils.client.collections.JsArray;
+import gwt.interop.utils.shared.functional.JsProcedure;
+import gwt.interop.utils.shared.collections.Array;
 
 import java.util.Date;
 
@@ -24,16 +24,16 @@ class TodoModel {
         }
     }
 
-    Array<Todo> todos = JSArray.create();
-    private Array<JSFunc> onChanges = JSArray.create();
+    Array<Todo> todos = JsArray.create();
+    private Array<JsProcedure> onChanges = JsArray.create();
 
-    void subscribe(JSFunc onChange) {
+    void subscribe(JsProcedure onChange) {
         onChanges.push(onChange);
     }
 
     private void inform() {
         //Utils.store(this.key, this.todos);
-        onChanges.forEach((v, index, theArray) -> v.call());
+        onChanges.forEachElem((v, index, theArray) -> v.call());
     }
 
     void addTodo(String title) {

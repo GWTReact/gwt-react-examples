@@ -1,6 +1,8 @@
 package gwt.react.todo_mvc.client;
 
 import com.google.gwt.dom.client.InputElement;
+import gwt.interop.utils.shared.collections.Array;
+import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.react.client.api.React;
 import gwt.react.client.components.ReactClass;
 import gwt.react.client.components.ReactClassSpec;
@@ -12,17 +14,15 @@ import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.HtmlProps;
 import gwt.react.client.proptypes.html.InputProps;
 import gwt.react.client.proptypes.html.attributeTypes.InputType;
-import gwt.react.client.utils.ObjLiteral;
-import gwt.react.shared.utils.Array;
 import gwt.react_router.client.HistoryLocation;
 import gwt.react_router.client.RouterEnhancedProps;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
 
+import static gwt.interop.utils.client.plainobjects.JsPlainObj.$;
 import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.*;
-import static gwt.react.client.utils.ObjLiteral.$;
 
 class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListState> {
 
@@ -49,7 +49,7 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
     }
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
-    static class TodoListState extends ObjLiteral {
+    static class TodoListState extends JsPlainObj {
         String editingId;
         String newTodo;
     }

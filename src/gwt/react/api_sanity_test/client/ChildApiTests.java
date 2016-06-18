@@ -1,5 +1,6 @@
 package gwt.react.api_sanity_test.client;
 
+import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.api.React;
 import gwt.react.client.components.StatelessComponent;
 import gwt.react.client.elements.ReactElement;
@@ -7,7 +8,6 @@ import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.CssProps;
 import gwt.react.client.proptypes.html.HtmlProps;
-import gwt.react.shared.utils.Array;
 
 import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.br;

@@ -1,14 +1,20 @@
 package gwt.react.api_sanity_test.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.Window;
+import gwt.interop.utils.client.collections.JsArray;
+import gwt.interop.utils.shared.collections.ArrayListAdapter;
+import gwt.interop.utils.shared.collections.Array;
+import gwt.interop.utils.shared.collections.ArrayFactory;
 import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
 import gwt.react.client.api.ReactDOMServer;
-import gwt.react.client.components.ReactClass;
 import gwt.react.client.elements.DOMElement;
 import gwt.react.client.proptypes.html.HtmlProps;
+
+import java.util.List;
 
 import static gwt.react.client.api.React.DOM.div;
 
@@ -16,13 +22,8 @@ public class App implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        ArrayTests.run();
-        MapTests.run();
-        ObjectLiteralTests.run();
 
-        ReactClass<StatefulReactClassSpec.Props> statefulComponent = React.createClass(new StatefulReactClassSpec());
-
-        StatefulReactClassSpec.Props statefulCompProps = new StatefulReactClassSpec.Props();
+        StatefulExample.Props statefulCompProps = new StatefulExample.Props();
         statefulCompProps.aProp = "aPropValue";
 
         DOMElement<HtmlProps> appComp =
@@ -40,7 +41,7 @@ public class App implements EntryPoint {
                     div(null, "Child 1 should be red"),
                     div(null, "Child 2 should be red (should be the last child)")
                 ),
-                React.createElement(statefulComponent, statefulCompProps)
+                React.createElement(StatefulExample.component, statefulCompProps)
             );
 
         ReactDOM.render(appComp, Document.get().getElementById("mainCont"), () -> Window.alert("Rendered"));

@@ -6,15 +6,13 @@ import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
 import gwt.react.client.events.MouseEventHandler;
 import gwt.react.client.proptypes.BaseProps;
-import gwt.react.client.utils.ObjLiteral;
 import gwt.react.redux.counter.client.components.Counter;
 import gwt.react.redux.counter.client.reducers.CounterReducer;
 import gwt.redux.client.Action;
 import gwt.redux.client.Redux;
 import gwt.redux.client.Store;
-import jsinterop.annotations.JsOverlay;
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+
+import static gwt.interop.utils.client.plainobjects.JsPlainObj.$;
 
 public class App implements EntryPoint {
 
@@ -32,7 +30,7 @@ public class App implements EntryPoint {
 
         ReactDOM.render(
                 React.createElement(Counter.component,
-                        ObjLiteral.$(new BaseProps(),
+                        $(new BaseProps(),
                             "value", store.getState(),
                             "onIncrement", onIncrement,
                             "onDecrement", onDecrement)

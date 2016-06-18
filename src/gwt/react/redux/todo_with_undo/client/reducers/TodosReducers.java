@@ -1,9 +1,9 @@
 package gwt.react.redux.todo_with_undo.client.reducers;
 
-import gwt.react.client.utils.JSArray;
+import gwt.interop.utils.client.collections.JsArray;
+import gwt.interop.utils.shared.collections.Array;
 import gwt.react.redux.todo_with_undo.client.actions.Actions;
 import gwt.react.redux.todo_with_undo.client.actions.Actions.TodoAction;
-import gwt.react.shared.utils.Array;
 import gwt.redux.client.Reducer;
 import gwt.redux.client.addons.redux_undo.ReduxUndo;
 import jsinterop.annotations.JsType;
@@ -41,7 +41,7 @@ public class TodosReducers {
 
     private static Reducer<Array<TodoState>, TodoAction> _todos = (state, action) -> {
         if (state == null)
-            state = JSArray.create();
+            state = JsArray.create();
 
         switch (action.type) {
             case Actions.ADD_TODO:

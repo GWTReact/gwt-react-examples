@@ -1,11 +1,11 @@
 package gwt.react.mobx.api_test.client;
 
+import gwt.interop.utils.client.collections.JsArray;
+import gwt.interop.utils.shared.collections.Array;
+import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.mobx.client.MobX;
 import gwt.mobx.client.MobX.*;
 import gwt.mobx.client.ObservableArray;
-import gwt.react.client.utils.JSArray;
-import gwt.react.client.utils.ObjLiteral;
-import gwt.react.shared.utils.Array;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
@@ -13,7 +13,7 @@ import jsinterop.annotations.JsType;
 public class MobXTests {
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
-    static class DataObject extends ObjLiteral {
+    static class DataObject extends JsPlainObj {
         public int intField;
         public String stringField;
         public boolean booleanField;
@@ -117,7 +117,7 @@ public class MobXTests {
     }
 
     private void testObservedPlainObject() {
-        String obj = observedObj.toString();
+        String obj = observedObj.toJSONString();
         assert obj.equals("{\"intField\":1,\"stringField\":\"Value10\",\"booleanField\":true,\"arrayField\":[\"Value0\",\"Value1\"]}");
 
         DisposerFunction autoRunCallback = MobX.autorun(() -> {
@@ -187,7 +187,7 @@ public class MobXTests {
     }
 
     private Array<String> makeArray(int len) {
-        Array<String> o = JSArray.create();
+        Array<String> o = JsArray.create();
 
         for(int i = 0; i < len; i++) {
             o.push("Value" + i);

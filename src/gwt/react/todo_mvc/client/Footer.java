@@ -8,7 +8,6 @@ import gwt.react.client.proptypes.*;
 import gwt.react.client.proptypes.html.AnchorProps;
 import gwt.react.client.proptypes.html.BtnProps;
 import gwt.react.client.proptypes.html.HtmlProps;
-import gwt.react.client.utils.Classnames;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import static gwt.react.client.api.React.DOM.*;

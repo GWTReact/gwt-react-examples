@@ -1,10 +1,10 @@
 package gwt.react.mobx.todo.client.components;
 
+import gwt.interop.utils.shared.functional.JsProcedure;
 import gwt.react.client.components.StatelessComponent;
 import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.AnchorProps;
-import gwt.react.client.utils.JSFunc;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
@@ -17,7 +17,7 @@ class Link {
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
     public static class Props extends BaseProps {
         public boolean active;
-        public JSFunc onClick;
+        public JsProcedure onClick;
     }
 
     public static StatelessComponent<Props, BaseContext> component = (props, context) -> {
