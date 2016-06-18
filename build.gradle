@@ -50,6 +50,7 @@ gwt {
     maxHeapSize = "4096M";
 
     modules 'gwt.react.api_sanity_test.apisanitytest'
+    modules 'gwt.react.widget_interop.widget_interop'
     modules 'gwt.react.todo_mvc.todomvc'
     modules 'gwt.react.mobx.api_test.mobxapitest'
     modules 'gwt.react.mobx.todo.mobxtodo'
@@ -57,10 +58,11 @@ gwt {
     modules 'gwt.react.redux.todo_with_undo.todowithundo'
 
     dependencies {
-        gwt group: 'com.github.gwtreact', name: 'gwt-react', version: '0.1.0'
-        gwt group: 'com.github.gwtreact', name: 'gwt-redux', version: '0.1.1'
-        gwt group: 'com.github.gwtreact', name: 'gwt-mobx', version: '0.1.0'
-        gwt group: 'com.github.gwtreact', name: 'gwt-react-router', version: '0.1.1'
+        gwt group: 'com.github.gwtreact', name: 'gwt-interop-utils', version: '0.1.+'
+        gwt group: 'com.github.gwtreact', name: 'gwt-react', version: '0.2.+'
+        gwt group: 'com.github.gwtreact', name: 'gwt-redux', version: '0.2.+'
+        gwt group: 'com.github.gwtreact', name: 'gwt-mobx', version: '0.2.+'
+        gwt group: 'com.github.gwtreact', name: 'gwt-react-router', version: '0.2.+'
     }
 
     superDev {
