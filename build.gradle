@@ -56,6 +56,7 @@ gwt {
     modules 'gwt.react.mobx.todo.mobxtodo'
     modules 'gwt.react.redux.counter.counter'
     modules 'gwt.react.redux.todo_with_undo.todowithundo'
+    modules 'gwt.react.widget_interop.widget_interop'
 
     dependencies {
         gwt group: 'com.github.gwtreact', name: 'gwt-interop-utils', version: '0.1.+'

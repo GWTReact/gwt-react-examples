@@ -17,6 +17,18 @@ If you click on the example links above, you can see the Javascript projects the
 
 ##Getting Started
 
-Todo
+1. Download and install Gradle from [gradle.org](http://gradle.org/)
 
+2. cd to the top level of gwt-react-examples
 
+3. Type gradle jettyDraftWar
+
+4. You can then go to the following url's for each sample
+
+    * http://localhost:8080/gwt-react-examples/apiSanityTest.html
+    * http://localhost:8080/gwt-react-examples/todomvc.html
+    * http://localhost:8080/gwt-react-examples/mobxApiTest.html
+    * http://localhost:8080/gwt-react-examples/mobxTodo.html
+    * http://localhost:8080/gwt-react-examples/reduxCounter.html
+    * http://localhost:8080/gwt-react-examples/reduxTodoWithUndo.html
+    * http://localhost:8080/gwt-react-examples/widgetInterop.html
