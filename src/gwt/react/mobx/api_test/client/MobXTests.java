@@ -31,9 +31,9 @@ public class MobXTests {
         }
     }
 
-    ObservableBooleanValue observedBoolean = MobX.observableValue(true);
+    ObservableValue<Boolean> observedBoolean = MobX.observableValue(true);
     ObservableIntValue observedInt = MobX.observableValue(1);
-    ObservableDoubleValue observedDouble = MobX.observableValue(10F);
+    ObservableValue<Double> observedDouble = MobX.observableValue(10.0);
     ObservableValue<String> observedFirstName = MobX.observableValue("Paul");
     ObservableValue<String> observedLastName = MobX.observableValue("Stockley");
     ObservableArray<String> observedArray = MobX.observable(makeArray(3));
@@ -41,11 +41,11 @@ public class MobXTests {
 
     ComputedValue<String> computedFullName = MobX.computed(() -> observedFirstName.get() + " " + observedLastName.get());
 
-    ComputedBooleanValue computedBooleanValue = MobX.computed(() -> !observedBoolean.get());
+    ComputedValue<Boolean> computedBooleanValue = MobX.computed(() -> !observedBoolean.get());
 
     ComputedIntValue computedIntValue = MobX.computed(() -> observedInt.get() + 1000);
 
-    ComputedDoubleValue computedDoubleValue = MobX.computed(() -> observedDouble.get() + 1000F);
+    ComputedValue<Double> computedDoubleValue = MobX.computed(() -> observedDouble.get() + 1000.0);
 
     StringBuilder logBuffer = new StringBuilder();
 
@@ -157,9 +157,9 @@ public class MobXTests {
     }
 
     private void testComputedDouble() {
-        assert(computedDoubleValue.get() == 1010F);
-        observedDouble.set(20);
-        assert(computedDoubleValue.get() == 1020F);
+        assert(computedDoubleValue.get() == 1010.0);
+        observedDouble.set(20.0);
+        assert(computedDoubleValue.get() == 1020.0);
     }
 
     private void testComputedBoolean() {
