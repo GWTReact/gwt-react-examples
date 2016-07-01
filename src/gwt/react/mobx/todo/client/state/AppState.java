@@ -37,32 +37,38 @@ public class AppState {
     private ObservableValue<FilterStatus> filter = MobX.observableValue(FilterStatus.ShowAll);
     private ObservableArray<Todo> todos = MobX.observable(JsArray.create());
 
-    private ComputedValue<Array<Todo>> visibleTodos = MobX.computed(() -> todos.filter((todo) -> {
-        switch(filter.get()) {
-            case ShowActive: return !todo.completed;
-            case ShowCompleted: return todo.completed;
-        }
-        return true;
-    }));
+    private ComputedValue<Array<Todo>> visibleTodos = MobX.computed(() -> {
+        return todos.filter((todo) -> {
+            switch(filter.get()) {
+                case ShowActive: return !todo.completed;
+                case ShowCompleted: return todo.completed;
+            }
+            return true;
+        });
+    });
 
     private Todo findTodo(int id) {
         return todos.find((todo) -> todo.id == id);
     }
 
     public Todo addTodo(String text){
-        Todo newTodo = Todo.make(todos.getLength(), text, false);
+        Todo newTodo;
+        newTodo = Todo.make(todos.getLength(), text, false);
 
-        todos.unshift(newTodo);
+        MobX.runInAction(() -> todos.unshift(newTodo));
+
         return newTodo;
     }
 
     public void toggleTodo(int id) {
-        Todo editTodo = findTodo(id);
-        editTodo.completed = !editTodo.completed;
+        MobX.runInAction("toggleTodo", () -> {
+            Todo editTodo = findTodo(id);
+            editTodo.completed = !editTodo.completed;
+        });
     }
 
     public void setFilter(FilterStatus filter) {
-        this.filter.set(filter);
+        MobX.runInAction("setFilter", () -> this.filter.set(filter));
     }
 
     public FilterStatus getFilter() {

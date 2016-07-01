@@ -62,7 +62,7 @@ gwt {
         gwt group: 'com.github.gwtreact', name: 'gwt-interop-utils', version: '0.1.+'
         gwt group: 'com.github.gwtreact', name: 'gwt-react', version: '0.2.+'
         gwt group: 'com.github.gwtreact', name: 'gwt-redux', version: '0.2.+'
-        gwt group: 'com.github.gwtreact', name: 'gwt-mobx', version: '0.2.+'
+        gwt group: 'com.github.gwtreact', name: 'gwt-mobx', version: '0.3.+'
         gwt group: 'com.github.gwtreact', name: 'gwt-react-router', version: '0.2.+'
     }
 

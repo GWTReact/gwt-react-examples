@@ -5,8 +5,8 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 /**
- * To be automatically observable, we need to define the Todo data object as an
- * object literal. If we don't do this, we would have to define each field  as
+ * To be automatically observable, we need to define the Todo data object as a
+ * plain javascript object. If we don't do this, we would have to define each field  as
  * an ObservableValue
  */
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name="Object")
