@@ -2,7 +2,9 @@ package gwt.react.mobx.todo.client.components;
 
 import gwt.interop.utils.shared.functional.JsProcedure;
 import gwt.mobx.client.MobXReact;
+import gwt.react.client.api.React;
 import gwt.react.client.components.StatelessComponent;
+import gwt.react.client.elements.ReactElement;
 import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.CssProps;
@@ -21,7 +23,7 @@ public class Todo {
         public String text;
     }
 
-    public static StatelessComponent<Props, BaseContext> component = MobXReact.observer((props, context) -> {
+    private static StatelessComponent<Props, BaseContext> component = MobXReact.observer((props, context) -> {
         return
             li(new HtmlProps()
                    .style(new CssProps()
@@ -29,4 +31,8 @@ public class Todo {
                    .onClick((e) -> props.onClickToToggle.call()),
                props.text);
     });
+
+    static ReactElement<Props, ?> todo(Props props) {
+        return React.createElement(component, props);
+    }
 }

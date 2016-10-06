@@ -8,6 +8,10 @@ import gwt.react.client.elements.ReactElement;
 import gwt.react.client.proptypes.BaseContext;
 
 import static gwt.react.client.api.React.DOM.div;
+import static gwt.react.mobx.todo.client.components.AddTodo.addTodo;
+import static gwt.react.mobx.todo.client.components.Footer.footer;
+import static gwt.react.mobx.todo.client.components.TodoList.todoList;
+
 
 public class App extends ReactClassSpec<AppStateProps, BaseContext> {
 
@@ -20,9 +24,9 @@ public class App extends ReactClassSpec<AppStateProps, BaseContext> {
     public ReactElement render() {
         return
             div(null,
-                React.createElement(AddTodo.component, getProps()),
-                React.createElement(TodoList.component, getProps()),
-                React.createElement(Footer.component, getProps())
+                addTodo(getProps()),
+                todoList(getProps()),
+                footer(getProps())
             );
     }
 

@@ -3,6 +3,7 @@ package gwt.react.mobx.todo.client.components;
 import gwt.mobx.client.MobXReact;
 import gwt.react.client.api.React;
 import gwt.react.client.components.StatelessComponent;
+import gwt.react.client.elements.ReactElement;
 import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.mobx.todo.client.state.AppState;
@@ -11,7 +12,7 @@ import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
-import static gwt.react.client.api.GwtReact.castAsReactElement;
+import static gwt.react.mobx.todo.client.components.Link.link;
 
 class FilterLink {
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
@@ -28,14 +29,15 @@ class FilterLink {
         }
     }
 
-    public static StatelessComponent<FilterLink.Props, BaseContext> component = MobXReact.observer((props, context) -> {
+    private static StatelessComponent<FilterLink.Props, BaseContext> component = MobXReact.observer((props, context) -> {
         Link.Props linkProps = new Link.Props();
         linkProps.active = (props.appState.getFilter() == props.filter);
         linkProps.onClick = () -> props.appState.setFilter(props.filter);
 
-        return
-            React.createElement(Link.component, linkProps,
-                castAsReactElement(props.children)
-            );
+        return link(linkProps, props.children);
     });
+
+    static ReactElement<FilterLink.Props, ?> filterLink(FilterLink.Props props, String text) {
+        return React.createElement(component, props, text);
+    }
 }
