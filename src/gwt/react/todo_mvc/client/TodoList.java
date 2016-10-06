@@ -20,6 +20,8 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
 
+import java.util.Objects;
+
 import static gwt.interop.utils.client.plainobjects.JsPlainObj.$;
 import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.*;
@@ -129,7 +131,7 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
             todoProps.todo = todo;
             todoProps.doAction = this::handleDoAction;
             todoProps.doSave = this::handleSave;
-            todoProps.isEditing = getState().editingId.equals(todo.id);
+            todoProps.isEditing = Objects.equals(getState().editingId, todo.id);
 
             return React.createElement(TodoItem.component, todoProps);
         });
