@@ -21,14 +21,12 @@ public class App implements EntryPoint {
     static final int ENTER_KEY = 13;
 
     static TodoModel model = new TodoModel();
-    static Array<ReactElement> routes = JsArray.create();
+    private static Array<ReactElement> routes = JsArray.create();
 
     private void render() {
         ReactDOM.render(
             React.createElement(Router, new RouterProps().History(ReactRouter.hashHistory),
-                    castAsReactElement(routes)
-
-            ),
+                    castAsReactElement(routes)),
             Document.get().getElementById("todoapp"));
     }
 
@@ -36,8 +34,17 @@ public class App implements EntryPoint {
     public void onModuleLoad() {
 
         //React Router now requires that you only create the Routes once so define them statically
-        routes.push(React.createElement(Route, new RouteProps().path("/").component(TodoList.component)));
-        routes.push(React.createElement(Route, new RouteProps().path("/:nowShowing").component(TodoList.component)));
+        routes.push(React.createElement(Route,
+                new RouteProps()
+                    .path("/")
+                    .component(TodoList.component)
+                    .key("1")));
+
+        routes.push(React.createElement(Route,
+                new RouteProps()
+                    .path("/:nowShowing")
+                    .component(TodoList.component)
+                    .key("2")));
 
         model.subscribe(this::render);
         render();
