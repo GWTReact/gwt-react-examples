@@ -46,7 +46,7 @@ public class Counter extends ReactClassSpec<BaseProps, JsPlainObj> {
     }
 
     @Override
-    public ReactElement render() {
+    public ReactElement<?, ?> render() {
         return
             React.DOM.p(null,
                 stringLiteral("Clicked: " + getProps().getInt("value") + " times "),

@@ -19,6 +19,8 @@ public class AppState {
             switch(filter.get()) {
                 case ShowActive: return !todo.completed;
                 case ShowCompleted: return todo.completed;
+                default:
+                	break;
             }
             return true;
         });

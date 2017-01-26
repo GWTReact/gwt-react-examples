@@ -17,7 +17,6 @@ import jsinterop.annotations.JsType;
 
 import static gwt.react.client.api.React.DOM.*;
 
-@SuppressWarnings("unused")
 @JsType
 class StatefulExample extends ReactClassSpec<StatefulExample.Props, StatefulExample.State> {
 
@@ -48,7 +47,7 @@ class StatefulExample extends ReactClassSpec<StatefulExample.Props, StatefulExam
         setState(State.make(val));
     }
 
-    public ReactElement render() {
+    public ReactElement<?, ?> render() {
         return
             div(null,
                 button(new BtnProps()

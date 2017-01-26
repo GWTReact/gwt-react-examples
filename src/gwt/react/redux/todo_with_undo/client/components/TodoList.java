@@ -24,7 +24,7 @@ public class TodoList {
 
     public static StatelessComponent<Props, BaseContext> component = (props, context) -> {
 
-        Array<ReactElement> todoEls = props.todos.map((todo, i, a) -> {
+        Array<ReactElement<?, ?>> todoEls = props.todos.map((todo, i, a) -> {
                     Todo.Props p = new Todo.Props();
                     p.key = Integer.toString(todo.id);
                     p.onClick = () -> props.onTodoClick.accept(todo.id);

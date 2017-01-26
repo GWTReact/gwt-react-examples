@@ -82,7 +82,6 @@ class TodoItem extends ReactClassSpec<TodoItem.TodoItemProps, TodoItem.TodoState
      * just use it as an example of how little code it takes to get an order
      * of magnitude performance improvement.
      */
-    @SuppressWarnings("unused")
     public boolean shouldComponentUpdate(TodoItemProps nextProps, TodoState nextState) {
         return (nextProps.todo != getProps().todo ||
                 nextProps.isEditing != getProps().isEditing ||
@@ -95,7 +94,6 @@ class TodoItem extends ReactClassSpec<TodoItem.TodoItemProps, TodoItem.TodoState
      * For more info refer to notes at https://facebook.github.io/react/docs/component-api.html#setstate
      * and https://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate
      */
-    @SuppressWarnings("unused")
     public void componentDidUpdate(TodoItemProps prevProps, TodoItemProps prevState) {
 
         if (!prevProps.isEditing && getProps().isEditing) {
@@ -105,7 +103,7 @@ class TodoItem extends ReactClassSpec<TodoItem.TodoItemProps, TodoItem.TodoState
         }
     }
 
-    public ReactElement render() {
+    public ReactElement<?, ?> render() {
         TodoItemProps props = getProps();
 
         return

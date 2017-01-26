@@ -21,7 +21,7 @@ public class App extends ReactClassSpec<AppStateProps, BaseContext> {
     }
 
     @Override
-    public ReactElement render() {
+    public ReactElement<?, ?> render() {
         return
             div(null,
                 addTodo(getProps()),
