@@ -26,6 +26,7 @@ import static gwt.interop.utils.client.plainobjects.JsPlainObj.$;
 import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.*;
 
+@JsType
 class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListState> {
 
     final static String NOW_SHOWING_ACTIVE_TODOS = "active";
