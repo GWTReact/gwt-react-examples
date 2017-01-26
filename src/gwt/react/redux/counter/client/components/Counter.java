@@ -10,6 +10,7 @@ import gwt.react.client.events.MouseEvent;
 import gwt.react.client.events.MouseEventHandler;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.BtnProps;
+import jsinterop.annotations.JsType;
 
 import static gwt.react.client.api.GwtReact.stringLiteral;
 import static gwt.react.client.api.React.DOM.button;
@@ -17,6 +18,7 @@ import static gwt.react.client.api.React.DOM.button;
 /**
  * This class illustrates how to work with typeless props i.e. no prop class if defined for this component
  */
+@JsType
 public class Counter extends ReactClassSpec<BaseProps, JsPlainObj> {
 
     private MouseEventHandler getOnIncrementFnProp() {
