@@ -38,7 +38,6 @@ public class Actions {
         a.type = SET_VISIBILITY_FILTER;
         a.filter = filter;
 
-        VisibilityAction b = new VisibilityAction() {{ type = a.type; }};
         return a;
     }
 

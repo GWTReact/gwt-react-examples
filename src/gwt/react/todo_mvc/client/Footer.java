@@ -25,7 +25,7 @@ class Footer {
     public static StatelessComponent<FooterProps, BaseContext> component = (props, context) -> {
 
         String activeTodoWord = utils.pluralize(props.count, "item");
-        ReactElement clearButton = null;
+        ReactElement<?, ?> clearButton = null;
 
         if (props.completedCount > 0) {
             clearButton = React.DOM.button(

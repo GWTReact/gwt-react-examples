@@ -32,3 +32,9 @@ www-test/
 
 #old GWT (1.5) created this dir
 .gwt-tmp/
+
+# Eclipse specific files and directories
+bin/
+.settings/
+.classpath
+.project

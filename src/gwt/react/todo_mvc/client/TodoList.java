@@ -26,6 +26,7 @@ import static gwt.interop.utils.client.plainobjects.JsPlainObj.$;
 import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.*;
 
+@JsType
 class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListState> {
 
     final static String NOW_SHOWING_ACTIVE_TODOS = "active";
@@ -108,9 +109,9 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
         setState($(new TodoListState(),"newTodo", InputElement.as(event.target).getValue()));
     }
 
-    public ReactElement render() {
-        ReactElement footer = null;
-        ReactElement main = null;
+    public ReactElement<?, ?> render() {
+        ReactElement<?, ?> footer = null;
+        ReactElement<?, ?> main = null;
         Array<TodoModel.Todo> todos = App.model.todos;
         String nowShowing = getProps().getRouterParams().nowShowing;
 
@@ -124,7 +125,7 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
             }
         });
 
-        Array<ReactElement> todoItems = shownTodos.map((todo, index, theArray) -> {
+        Array<ReactElement<?, ?>> todoItems = shownTodos.map((todo, index, theArray) -> {
             TodoItem.TodoItemProps todoProps = new TodoItem.TodoItemProps();
 
             todoProps.key = todo.id;

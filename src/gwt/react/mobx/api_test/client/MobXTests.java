@@ -43,7 +43,7 @@ public class MobXTests {
 
     ComputedValue<Boolean> computedBooleanValue = MobX.computed(() -> !observedBoolean.get());
 
-    ComputedIntValue computedIntValue = MobX.computed(() -> observedInt.get() + 1000);
+    ComputedIntValue computedIntValue = MobX.computed((ComputedIntExpression)() -> observedInt.get() + 1000);
 
     ComputedValue<Double> computedDoubleValue = MobX.computed(() -> observedDouble.get() + 1000.0);
 

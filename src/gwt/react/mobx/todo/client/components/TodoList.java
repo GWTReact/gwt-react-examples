@@ -14,7 +14,7 @@ import static gwt.react.mobx.todo.client.components.Todo.todo;
 class TodoList {
 
     private static StatelessComponent<AppStateProps, BaseContext> component = MobXReact.observer((props, context) -> {
-        Array<ReactElement> todoEls = props.appState.getVisibleTodos().map((todo) -> {
+        Array<ReactElement<?, ?>> todoEls = props.appState.getVisibleTodos().map((todo) -> {
             Todo.Props p = new Todo.Props();
             p.key = Integer.toString(todo.id);
             p.onClickToToggle = () -> props.appState.toggleTodo(todo.id);

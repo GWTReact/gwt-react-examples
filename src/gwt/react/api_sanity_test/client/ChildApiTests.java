@@ -27,7 +27,7 @@ class ChildApiTests {
 
     static StatelessComponent<BaseProps, BaseContext> updatePropsOfChildrenComponent = (props, context) -> {
 
-        Array<ReactElement> newChildren = React.Children.map(props.children, (child) -> {
+        Array<ReactElement<?, ?>> newChildren = React.Children.map(props.children, (child) -> {
             HtmlProps propsToMerge =  new HtmlProps()
                                             .style(new CssProps()
                                                 .color("red"));
@@ -42,7 +42,7 @@ class ChildApiTests {
     };
 
     static StatelessComponent<BaseProps, BaseContext> childArrayTestComponent = (props, context) -> {
-        Array<ReactElement> existingChildren = React.Children.toArray(props.children);
+        Array<ReactElement<?, ?>> existingChildren = React.Children.toArray(props.children);
 
         return
             div(null,
