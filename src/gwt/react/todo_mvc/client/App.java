@@ -6,6 +6,7 @@ import gwt.interop.utils.client.collections.JsArray;
 import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
+import gwt.react.client.components.ComponentUtils;
 import gwt.react.client.elements.ReactElement;
 import gwt.react_router.client.ReactRouter;
 import gwt.react_router.client.RouteProps;
@@ -32,18 +33,17 @@ public class App implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-
         //React Router now requires that you only create the Routes once so define them statically
         routes.push(React.createElement(Route,
                 new RouteProps()
                     .path("/")
-                    .component(TodoList.component)
+                    .component(ComponentUtils.getCtorFn(TodoList.class))
                     .key("1")));
 
         routes.push(React.createElement(Route,
                 new RouteProps()
                     .path("/:nowShowing")
-                    .component(TodoList.component)
+                    .component(ComponentUtils.getCtorFn(TodoList.class))
                     .key("2")));
 
         model.subscribe(this::render);

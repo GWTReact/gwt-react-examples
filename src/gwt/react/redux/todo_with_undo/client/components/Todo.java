@@ -2,7 +2,6 @@ package gwt.react.redux.todo_with_undo.client.components;
 
 import gwt.interop.utils.shared.functional.JsProcedure;
 import gwt.react.client.components.StatelessComponent;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.CssProps;
 import gwt.react.client.proptypes.html.HtmlProps;
@@ -21,7 +20,7 @@ public class Todo {
         public String text;
     }
 
-    public static StatelessComponent<Props, BaseContext> component = (props, context) -> {
+    public static StatelessComponent<Props> component = (props) -> {
         CssProps style = new CssProps();
         style.textDecoration(props.completed ? "line-through" : "none");
 

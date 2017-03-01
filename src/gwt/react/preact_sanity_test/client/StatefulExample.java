@@ -1,8 +1,9 @@
-package gwt.react.widget_interop.client;
+package gwt.react.preact_sanity_test.client;
 
 import com.google.gwt.dom.client.InputElement;
+import com.google.gwt.user.client.Window;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
-import gwt.react.client.components.Component;
+import gwt.react.client.components.PureComponent;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.events.FormEvent;
 import gwt.react.client.proptypes.BaseProps;
@@ -15,7 +16,7 @@ import jsinterop.annotations.JsType;
 import static gwt.react.client.api.React.DOM.*;
 
 @JsType
-class StatefulExample extends Component<StatefulExample.Props, StatefulExample.State> {
+class StatefulExample extends PureComponent<StatefulExample.Props, StatefulExample.State> {
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name="Object")
     static class Props extends BaseProps {
@@ -36,7 +37,7 @@ class StatefulExample extends Component<StatefulExample.Props, StatefulExample.S
 
     public StatefulExample(StatefulExample.Props props) {
         super(props);
-        state = State.make("Initial Value");
+        this.state = State.make("Initial Value");
     }
 
     private void doChange(FormEvent event) {
@@ -58,6 +59,37 @@ class StatefulExample extends Component<StatefulExample.Props, StatefulExample.S
                     .value(state.aStateVar)
                     .onChange(this::doChange))
             );
+    }
+
+    //Optional lifecycle methods
+
+    public void componentWillMount() {
+        Window.alert("componentWillMount called");
+    }
+
+    public void componentDidMount() {
+        Window.alert("componentDidMount called");
+    }
+
+    public void componentWillReceiveProps(Props nextProps) {
+        Window.alert("componentWillReceiveProps called (nextProps "+ nextProps.toJSONString() + ")");
+    }
+
+    public boolean shouldComponentUpdate(Props nextProps, State nextState) {
+        Window.alert("shouldComponentUpdate called (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
+        return true;
+    }
+
+    public void componentWillUpdate(Props nextProps, State nextState) {
+        Window.alert("componentWillUpdate called  (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
+    }
+
+    public void componentDidUpdate(Props prevProps, State prevState) {
+        Window.alert("componentDidUpdate called (prevProps "+ prevProps.toJSONString() + " prevState " + prevState.toJSONString() + ")");
+    }
+
+    public void componentWillUnmount() {
+        Window.alert("componentWillUnmount called");
     }
 
     private String getDescription() {

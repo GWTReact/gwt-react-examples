@@ -2,7 +2,6 @@ package gwt.react.redux.todo_with_undo.client.components;
 
 import gwt.interop.utils.shared.functional.JsProcedure;
 import gwt.react.client.components.StatelessComponent;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.AnchorProps;
 import jsinterop.annotations.JsPackage;
@@ -20,7 +19,7 @@ public class Link {
         public JsProcedure onClick;
     }
 
-    public static StatelessComponent<Props, BaseContext> component = (props, context) -> {
+    public static StatelessComponent<Props> component = (props) -> {
         if (props.active) {
             return
                 span(null,

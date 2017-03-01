@@ -29,7 +29,7 @@ public class App implements EntryPoint {
         MouseEventHandler onDecrement = (e) -> store.dispatch(makeAction("DECREMENT"));
 
         ReactDOM.render(
-                React.createElement(Counter.component,
+                React.createElement(Counter.class,
                         $(new BaseProps(),
                             "value", store.getState(),
                             "onIncrement", onIncrement,

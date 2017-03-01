@@ -4,7 +4,6 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.InputElement;
 import gwt.react.client.components.StatelessComponent;
 import gwt.react.client.events.FormEventHandler;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.BtnProps;
 import gwt.react.client.proptypes.html.FormProps;
@@ -20,7 +19,7 @@ public class AddTodo {
 
     private static InputElement input;
 
-    private static StatelessComponent<BaseProps, BaseContext> addTodoComp = (props, context) -> {
+    private static StatelessComponent<BaseProps> addTodoComp = (props) -> {
         Dispatch dispatch = props.getObj("dispatch");
 
         FormEventHandler handleSubmit = (event) -> {
@@ -42,5 +41,5 @@ public class AddTodo {
             );
     };
 
-    public static StatelessComponent<BaseProps, BaseContext> component = ReactRedux.connect().toComponent(addTodoComp);
+    public static StatelessComponent<BaseProps> component = ReactRedux.connect().toComponent(addTodoComp);
 }

@@ -2,7 +2,6 @@ package gwt.react.redux.todo_with_undo.client.containers;
 
 import gwt.interop.utils.shared.functional.JsProcedure;
 import gwt.react.client.components.StatelessComponent;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.BtnProps;
 import gwt.react.redux.todo_with_undo.client.containers.FilterLink.Props;
@@ -21,7 +20,7 @@ import static gwt.react.client.api.React.DOM.p;
  */
 public class UndoRedo {
 
-    private static StatelessComponent<BaseProps, BaseContext> undoRedoComp = (props, context) ->
+    private static StatelessComponent<BaseProps> undoRedoComp = (props) ->
         p(null,
             button(new BtnProps()
                     .onClick(props.getObj("onUndo"))
@@ -44,6 +43,6 @@ public class UndoRedo {
         return $jsPlainObj("onUndo", onUndo, "onRedo", onRedo);
     };
 
-    public static StatelessComponent<BaseProps, BaseContext> component =
+    public static StatelessComponent<BaseProps> component =
             ReactRedux.connect(mapStateToPropsFn, mapDispatchToProps).toComponent(undoRedoComp);
 }

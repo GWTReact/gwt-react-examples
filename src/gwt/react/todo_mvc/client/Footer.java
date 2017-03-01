@@ -1,6 +1,5 @@
 package gwt.react.todo_mvc.client;
 
-import gwt.react.client.api.React;
 import gwt.react.client.components.*;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.events.MouseEventHandler;
@@ -22,15 +21,18 @@ class Footer {
         MouseEventHandler onClearCompleted;
     }
 
-    public static StatelessComponent<FooterProps, BaseContext> component = (props, context) -> {
+    public static StatelessComponent<FooterProps> component = (props) -> {
 
         String activeTodoWord = utils.pluralize(props.count, "item");
         ReactElement<?, ?> clearButton = null;
 
         if (props.completedCount > 0) {
-            clearButton = React.DOM.button(
-                    new BtnProps().className("clear-completed").onClick(props.onClearCompleted),
-                        "Clear Completed");
+            clearButton = button(
+                new BtnProps()
+                    .className("clear-completed")
+                    .onClick(props.onClearCompleted),
+                "Clear Completed"
+            );
         }
         String nowShowing = props.nowShowing;
 

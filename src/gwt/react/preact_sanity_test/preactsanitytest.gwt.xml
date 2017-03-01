@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module rename-to='apisanitytest'>
+<module rename-to='preactsanitytest'>
     <!-- Inherit the core Web Toolkit stuff.                        -->
     <inherits name='com.google.gwt.user.User' />
     <inherits name="com.google.gwt.resources.Resources" />
@@ -10,7 +10,7 @@
     <!-- <set-property name="jre.checks.checkLevel" value="MINIMAL" /> -->
 
     <!-- Specify the app entry point class.                         -->
-    <entry-point class='gwt.react.api_sanity_test.client.App' />
+    <entry-point class='gwt.react.preact_sanity_test.client.App' />
 
     <!-- Specify the paths for translatable code                    -->
     <source path='client' />

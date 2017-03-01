@@ -1,11 +1,10 @@
 package gwt.react.todo_mvc.client;
 
 import com.google.gwt.dom.client.InputElement;
-import gwt.interop.utils.shared.collections.Array;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
+import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.api.React;
-import gwt.react.client.components.ReactClass;
-import gwt.react.client.components.ReactClassSpec;
+import gwt.react.client.components.Component;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.events.FormEvent;
 import gwt.react.client.events.KeyboardEvent;
@@ -27,7 +26,7 @@ import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.*;
 
 @JsType
-class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListState> {
+class TodoList extends Component<TodoList.TodoListProps, TodoList.TodoListState> {
 
     final static String NOW_SHOWING_ACTIVE_TODOS = "active";
     final static String NOW_SHOWING_COMPLETED_TODOS = "completed";
@@ -57,8 +56,9 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
         String newTodo;
     }
     
-    public TodoListState getInitialState() {
-        return $(new TodoListState(), "editingId",null, "newTodo","");
+    public TodoList(TodoList.TodoListProps props) {
+        super(props);
+        state = $(new TodoListState(), "editingId",null, "newTodo","");
     }
 
     private void handleDoAction(Action action, TodoModel.Todo todo) {
@@ -97,7 +97,7 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
 
         event.preventDefault();
 
-        String val = getState().newTodo.trim();
+        String val = state.newTodo.trim();
 
         if (val.length() > 0) {
             App.model.addTodo(val);
@@ -113,7 +113,7 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
         ReactElement<?, ?> footer = null;
         ReactElement<?, ?> main = null;
         Array<TodoModel.Todo> todos = App.model.todos;
-        String nowShowing = getProps().getRouterParams().nowShowing;
+        String nowShowing = props.getRouterParams().nowShowing;
 
         Array<TodoModel.Todo> shownTodos = todos.filter((todo, index, theArray) -> {
             if (nowShowing == null) {
@@ -132,9 +132,9 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
             todoProps.todo = todo;
             todoProps.doAction = this::handleDoAction;
             todoProps.doSave = this::handleSave;
-            todoProps.isEditing = Objects.equals(getState().editingId, todo.id);
+            todoProps.isEditing = Objects.equals(state.editingId, todo.id);
 
-            return React.createElement(TodoItem.component, todoProps);
+            return React.createElement(TodoItem.class, todoProps);
         });
 
         Integer activeTodoCount = todos.reduce((accum, currentValue, index, theArray) ->
@@ -146,16 +146,21 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
             Footer.FooterProps footerProps = new Footer.FooterProps();
             footerProps.count = activeTodoCount;
             footerProps.completedCount = completedCount;
-            footerProps.nowShowing = getProps().getRouterParams().nowShowing;
+            footerProps.nowShowing = props.getRouterParams().nowShowing;
             footerProps.onClearCompleted = this::handleClearCompleted;
 
             footer = React.createElement(Footer.component, footerProps);
         }
 
         if (todos.getLength() > 0) {
-            main = section(new HtmlProps().className("header"),
-                        input(new InputProps().className("toggle-all").type(InputType.checkbox).onChange(this::handleToggleAll)),
-                        ul(new HtmlProps().className("todo-list"),
+            main = section(new HtmlProps()
+                            .className("header"),
+                        input(new InputProps()
+                                .className("toggle-all")
+                                .type(InputType.checkbox)
+                                .onChange(this::handleToggleAll)),
+                        ul(new HtmlProps()
+                                .className("todo-list"),
                             castAsReactElement(todoItems)
                         )
                     );
@@ -163,12 +168,13 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
 
         return
             div(null,
-                header(new HtmlProps().className("header"),
+                header(new HtmlProps()
+                                .className("header"),
                         h1(null, "todos"),
                         input(new InputProps()
                                 .className("new-todo")
                                 .placeHolder("What needs to be done?")
-                                .value(getState().newTodo)
+                                .value(state.newTodo)
                                 .onKeyDown(this::handleNewTodoKeyDown)
                                 .onChange(this::handleChange)
                                 .autoFocus(true))
@@ -177,6 +183,4 @@ class TodoList extends ReactClassSpec<TodoList.TodoListProps, TodoList.TodoListS
                 footer
             );
     }
-
-    public static ReactClass<TodoListProps> component = React.createClass(new TodoList());
 }

@@ -3,22 +3,30 @@ package gwt.react.api_sanity_test.client;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.user.client.Window;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
-import gwt.react.client.api.React;
-import gwt.react.client.components.ReactClass;
-import gwt.react.client.components.ReactClassSpec;
+import gwt.react.client.components.Component;
+import gwt.react.client.components.PureComponent;
+import gwt.react.client.components.lifecycle.*;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.events.FormEvent;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.BtnProps;
 import gwt.react.client.proptypes.html.InputProps;
-import jsinterop.annotations.JsOverlay;
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import jsinterop.annotations.*;
 
 import static gwt.react.client.api.React.DOM.*;
 
+/**
+ * This shows the optional use of lifecycle interfaces. They aren't strictly necessary, however,
+ * they help with type checking
+ */
 @JsType
-class StatefulExample extends ReactClassSpec<StatefulExample.Props, StatefulExample.State> {
+class StatefulExample extends PureComponent<StatefulExample.Props, StatefulExample.State> implements
+        ComponentWillMount,
+        ComponentDidMount,
+        ComponentWillReceiveProps<StatefulExample.Props>,
+        ShouldComponentUpdate<StatefulExample.Props, StatefulExample.State>,
+        ComponentDidUpdate<StatefulExample.Props, StatefulExample.State>,
+        ComponentWillUnmount {
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name="Object")
     static class Props extends BaseProps {
@@ -37,8 +45,9 @@ class StatefulExample extends ReactClassSpec<StatefulExample.Props, StatefulExam
         }
     }
 
-    public State getInitialState() {
-        return State.make("Initial Value");
+    public StatefulExample(StatefulExample.Props props) {
+        super(props);
+        this.state = State.make("Initial Value");
     }
 
     private void doChange(FormEvent event) {
@@ -57,7 +66,7 @@ class StatefulExample extends ReactClassSpec<StatefulExample.Props, StatefulExam
 
                 input(new InputProps()
                     .placeHolder("What needs to be done?")
-                    .value(getState().aStateVar)
+                    .value(state.aStateVar)
                     .onChange(this::doChange))
             );
     }
@@ -73,11 +82,11 @@ class StatefulExample extends ReactClassSpec<StatefulExample.Props, StatefulExam
     }
 
     public void componentWillReceiveProps(Props nextProps) {
-        Window.alert("componentDidMount called (nextProps "+ nextProps.toJSONString() + ")");
+        Window.alert("componentWillReceiveProps called (nextProps "+ nextProps.toJSONString() + ")");
     }
 
     public boolean shouldComponentUpdate(Props nextProps, State nextState) {
-        Window.alert("componentWillReceiveProps called (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
+        Window.alert("shouldComponentUpdate called (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
         return true;
     }
 
@@ -94,8 +103,6 @@ class StatefulExample extends ReactClassSpec<StatefulExample.Props, StatefulExam
     }
 
     private String getDescription() {
-        return "Click Me (state=" + getState().aStateVar + ", props=" + getProps().aProp + ")";
+        return "Click Me (state=" + state.aStateVar + ", props=" + props.aProp + ")";
     }
-
-    public static ReactClass<Props> component = React.createClass(new StatefulExample());
 }

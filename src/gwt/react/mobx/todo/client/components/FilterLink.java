@@ -4,7 +4,6 @@ import gwt.mobx.client.MobXReact;
 import gwt.react.client.api.React;
 import gwt.react.client.components.StatelessComponent;
 import gwt.react.client.elements.ReactElement;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.mobx.todo.client.state.AppState;
 import gwt.react.mobx.todo.client.state.AppState.FilterStatus;
@@ -29,7 +28,7 @@ class FilterLink {
         }
     }
 
-    private static StatelessComponent<FilterLink.Props, BaseContext> component = MobXReact.observer((props, context) -> {
+    private static StatelessComponent<FilterLink.Props> component = MobXReact.observer((props) -> {
         Link.Props linkProps = new Link.Props();
         linkProps.active = (props.appState.getFilter() == props.filter);
         linkProps.onClick = () -> props.appState.setFilter(props.filter);

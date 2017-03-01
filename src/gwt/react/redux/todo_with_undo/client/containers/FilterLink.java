@@ -3,7 +3,6 @@ package gwt.react.redux.todo_with_undo.client.containers;
 import gwt.interop.utils.shared.functional.JsProcedure;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.react.client.components.StatelessComponent;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.redux.todo_with_undo.client.actions.Actions;
 import gwt.react.redux.todo_with_undo.client.components.Link;
 import gwt.redux.client.addons.react_redux.MapDispatchToPropsFn;
@@ -36,6 +35,6 @@ public class FilterLink {
         return $jsPlainObj("onClick", onClick);
     };
 
-    public static StatelessComponent<Props, BaseContext> component =
+    public static StatelessComponent<Props> component =
             ReactRedux.connect(mapStateToPropsFn, mapDispatchToProps).toComponent(Link.component);
 }

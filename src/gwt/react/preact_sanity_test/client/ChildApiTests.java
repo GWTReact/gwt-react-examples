@@ -1,8 +1,9 @@
-package gwt.react.api_sanity_test.client;
+package gwt.react.preact_sanity_test.client;
 
 import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.api.React;
 import gwt.react.client.components.StatelessComponent;
+import gwt.react.client.elements.DOMElement;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.client.proptypes.html.CssProps;
@@ -13,7 +14,7 @@ import static gwt.react.client.api.React.DOM.br;
 import static gwt.react.client.api.React.DOM.div;
 
 class ChildApiTests {
-    static StatelessComponent<BaseProps> countChildrenComponent = (props) -> {
+    static DOMElement<HtmlProps> countChildrenComponent(BaseProps props) {
         int countChildren = React.Children.count(props.children);
 
         return
@@ -24,7 +25,7 @@ class ChildApiTests {
             );
     };
 
-    static StatelessComponent<BaseProps> updatePropsOfChildrenComponent = (props) -> {
+    static DOMElement<HtmlProps> updatePropsOfChildrenComponent(BaseProps props) {
 
         Array<ReactElement<?, ?>> newChildren = React.Children.map(props.children, (child) -> {
             HtmlProps propsToMerge =  new HtmlProps()
@@ -40,7 +41,7 @@ class ChildApiTests {
                 br(null));
     };
 
-    static StatelessComponent<BaseProps> childArrayTestComponent = (props) -> {
+    static DOMElement<HtmlProps> childArrayTestComponent(BaseProps props) {
         Array<ReactElement<?, ?>> existingChildren = React.Children.toArray(props.children);
 
         return

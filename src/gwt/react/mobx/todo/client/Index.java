@@ -26,7 +26,7 @@ public class Index implements EntryPoint {
             div(null,
                 //Show Dev tools toolbar
                 React.createElement(MobXDevTools.component, $(new BaseProps(), "hightlightTimeout", 4000)),
-                React.createElement(App.component, $(new AppStateProps(), "appState", appState))
+                React.createElement(App.class, $(new AppStateProps(), "appState", appState))
             ),
             Document.get().getElementById("mainCont"));
     }

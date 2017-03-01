@@ -21,7 +21,7 @@ public class App implements EntryPoint {
             StatefulExample.Props statefulComp1Props = new StatefulExample.Props();
             statefulComp1Props.aProp = "Embedded React component 1";
 
-            ReactPanel reactPanel = new ReactPanel(React.createElement(StatefulExample.component, statefulComp1Props));
+            ReactPanel reactPanel = new ReactPanel(React.createElement(StatefulExample.class, statefulComp1Props));
             reactPanel.setWidth("700px");
             reactPanel.setHeight("700px");
 
@@ -36,7 +36,7 @@ public class App implements EntryPoint {
         StatefulExample.Props statefulComp2Props = new StatefulExample.Props();
         statefulComp2Props.aProp = "Embedded React component 2";
 
-        ReactPanel reactPanel = new ReactPanel(React.createElement(StatefulExample.component, statefulComp2Props));
+        ReactPanel reactPanel = new ReactPanel(React.createElement(StatefulExample.class, statefulComp2Props));
         RootPanel.get("replaceme2").add(reactPanel);
     }
 }

@@ -7,7 +7,6 @@ import gwt.react.client.api.React;
 import gwt.react.client.components.StatelessComponent;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.events.FormEventHandler;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.html.BtnProps;
 import gwt.react.client.proptypes.html.FormProps;
 import gwt.react.client.proptypes.html.InputProps;
@@ -18,7 +17,7 @@ import static gwt.react.client.api.React.DOM.*;
 class AddTodo {
     private static InputElement input;
 
-    private static StatelessComponent<AppStateProps, BaseContext> component = MobXReact.observer((props, context) -> {
+    private static StatelessComponent<AppStateProps> component = MobXReact.observer((props) -> {
 
         FormEventHandler handleSubmit = (event) -> {
 

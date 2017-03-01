@@ -64,7 +64,7 @@ public class ObservableMapTests {
         assert(testObserve.toString().equals("k3,true,undefined,add k3,true,v3,delete k2,true,v2,update "));
         disposer.dispose();
 
-        StringMap<String> jsMap = testMap.toJs();
+        StringMap<String> jsMap = testMap.toJS();
         String s = JSON.stringify(jsMap);
         assert(s.equals("{\"k1\":\"v1\",\"k2\":\"v2.1\"}"));
     }

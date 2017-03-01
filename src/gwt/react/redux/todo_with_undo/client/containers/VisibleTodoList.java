@@ -3,7 +3,6 @@ package gwt.react.redux.todo_with_undo.client.containers;
 import gwt.interop.utils.shared.functional.JsConsumer;
 import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.components.StatelessComponent;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.redux.todo_with_undo.client.actions.Actions;
 import gwt.react.redux.todo_with_undo.client.components.TodoList;
 import gwt.react.redux.todo_with_undo.client.reducers.TodoAppReducer.State;
@@ -37,6 +36,6 @@ public class VisibleTodoList {
         return $jsPlainObj("onTodoClick", onClick);
     };
 
-    public static StatelessComponent<TodoList.Props, BaseContext> component =
+    public static StatelessComponent<TodoList.Props> component =
             ReactRedux.connect(mapStateToPropsFn, mapDispatchToProps).toComponent(TodoList.component);
 }

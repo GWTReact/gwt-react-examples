@@ -5,7 +5,6 @@ import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.api.React;
 import gwt.react.client.components.StatelessComponent;
 import gwt.react.client.elements.ReactElement;
-import gwt.react.client.proptypes.BaseContext;
 import gwt.react.client.proptypes.BaseProps;
 import gwt.react.redux.todo_with_undo.client.reducers.TodosReducers.TodoState;
 import jsinterop.annotations.JsPackage;
@@ -22,7 +21,7 @@ public class TodoList {
         public JsConsumer<Integer> onTodoClick;
     }
 
-    public static StatelessComponent<Props, BaseContext> component = (props, context) -> {
+    public static StatelessComponent<Props> component = (props) -> {
 
         Array<ReactElement<?, ?>> todoEls = props.todos.map((todo, i, a) -> {
                     Todo.Props p = new Todo.Props();
