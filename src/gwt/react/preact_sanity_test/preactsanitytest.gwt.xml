@@ -7,7 +7,7 @@
     <inherits name="gwt.react.React" />
 
     <set-property name="user.agent" value="safari"/>
-    <!-- <set-property name="jre.checks.checkLevel" value="MINIMAL" /> -->
+    <set-property name="jre.checks.checkLevel" value="MINIMAL" />
 
     <!-- Specify the app entry point class.                         -->
     <entry-point class='gwt.react.preact_sanity_test.client.App' />

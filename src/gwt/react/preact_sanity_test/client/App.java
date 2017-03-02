@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Window;
 import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
 import gwt.react.client.api.ReactDOMServer;
+import gwt.react.client.components.ComponentUtils;
 import gwt.react.client.elements.DOMElement;
 import gwt.react.client.proptypes.html.HtmlProps;
 
@@ -34,7 +35,9 @@ public class App implements EntryPoint {
                     div(null, "Child 1 should be red"),
                     div(null, "Child 2 should be red (should be the last child)")
                 ),
-                React.createElement(StatefulExample.class, statefulCompProps)
+                React.createElement(StatefulExample.class, statefulCompProps),
+		        //The following creates an element using a ComponentConstructorFn
+                React.createElement(StatefulExample2.component(), null)
             );
 
         ReactDOM.render(appComp, Document.get().getElementById("mainCont"), () -> Window.alert("Rendered"));
