@@ -1262,7 +1262,7 @@
 	}(this, function(exports) {
 	    function VNode(nodeName, attributes, children) {
 	        this.nodeName = nodeName;
-	        this.attributes = attributesArr
+	        this.attributes = attributes;
 	        this.children = children;
 	        this.key = attributes && attributes.key;
 	    }
