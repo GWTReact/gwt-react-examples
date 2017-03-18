@@ -1,7 +1,10 @@
 package gwt.react.preact_sanity_test.client;
 
 
+import com.google.gwt.core.client.GWT;
+import gwt.interop.utils.client.collections.JsArray;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
+import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.components.Component;
 import gwt.react.client.components.ComponentConstructorFn;
 import gwt.react.client.elements.ReactElement;
@@ -14,6 +17,7 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 import static gwt.interop.utils.client.plainobjects.JsPlainObj.$;
+import static gwt.react.client.api.GwtReact.castAsReactElement;
 import static gwt.react.client.api.React.DOM.*;
 import static gwt.react.client.components.ComponentUtils.getCtorFn;
 
@@ -40,6 +44,9 @@ public class StatefulExample2 extends Component<BaseProps, StatefulExample2.Stat
 
 	@Override
 	protected ReactElement<?, ?> render() {
+		GWT.debugger();
+		Array<String> testLiItems = JsArray.create("Item1", "Item2", "Item3");
+
 		return
 			div(null,
 				label(new LabelProps()
@@ -51,14 +58,17 @@ public class StatefulExample2 extends Component<BaseProps, StatefulExample2.Stat
 						.type(InputType.checkbox)
 						.checked(state.checked)
 						.onClick(this::onClicked)
-			)
+				),
+				ul(null,
+						castAsReactElement(testLiItems.map(i -> li(null, i)))
+				)
 		);
 	}
 
 	//You cannot pass the Class directly to React.createElement if you have renamed the JsType or
-	//disabled class meta data using (-XdisableClassMetadata) . In this case you need to use ComponentUtils.getCtorFn
+	//disabled class meta data using (-XdisableClassMetadata) . In this case, you need to use ComponentUtils.getCtorFn
 	//to get the constructor function
 	public static ComponentConstructorFn<BaseProps> component() {
-		return getCtorFn("RenamedStatefulExample2");
+		return getCtorFn(StatefulExample2.class, "RenamedStatefulExample2");
 	}
 }
