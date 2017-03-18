@@ -1,7 +1,6 @@
 package gwt.react.preact_sanity_test.client;
 
 
-import com.google.gwt.core.client.GWT;
 import gwt.interop.utils.client.collections.JsArray;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.interop.utils.shared.collections.Array;
@@ -44,7 +43,6 @@ public class StatefulExample2 extends Component<BaseProps, StatefulExample2.Stat
 
 	@Override
 	protected ReactElement<?, ?> render() {
-		GWT.debugger();
 		Array<String> testLiItems = JsArray.create("Item1", "Item2", "Item3");
 
 		return
@@ -59,6 +57,7 @@ public class StatefulExample2 extends Component<BaseProps, StatefulExample2.Stat
 						.checked(state.checked)
 						.onClick(this::onClicked)
 				),
+				//The following doesn't work with Preact 7.2.0 without a patch (included in gwt-react), due to iFrame JS loading issues
 				ul(null,
 						castAsReactElement(testLiItems.map(i -> li(null, i)))
 				)
@@ -66,7 +65,7 @@ public class StatefulExample2 extends Component<BaseProps, StatefulExample2.Stat
 	}
 
 	//You cannot pass the Class directly to React.createElement if you have renamed the JsType or
-	//disabled class meta data using (-XdisableClassMetadata) . In this case, you need to use ComponentUtils.getCtorFn
+	//disabled class meta data using (-XnoclassMetadata) . In this case, you need to use ComponentUtils.getCtorFn
 	//to get the constructor function
 	public static ComponentConstructorFn<BaseProps> component() {
 		return getCtorFn(StatefulExample2.class, "RenamedStatefulExample2");
