@@ -1,7 +1,7 @@
 # gwt-react-examples
 Examples for the various GWT React projects
 
-##Introduction
+## Introduction
 
 gwt-react-examples provides examples of how to use the various GWTReact projects including:
 
@@ -14,7 +14,7 @@ gwt-react-examples provides examples of how to use the various GWTReact projects
 
 If you click on the example links above, you can see the Javascript projects the examples where ported from.
 
-##Getting Started
+## Getting Started
 
 1. Download and install Gradle from [gradle.org](http://gradle.org/)
 
