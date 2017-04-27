@@ -52,18 +52,12 @@ gwt {
     modules 'gwt.react.api_sanity_test.apisanitytest'
     modules 'gwt.react.widget_interop.widget_interop'
     modules 'gwt.react.todo_mvc.todomvc'
-    modules 'gwt.react.mobx.api_test.mobxapitest'
-    modules 'gwt.react.mobx.todo.mobxtodo'
-    modules 'gwt.react.redux.counter.counter'
-    modules 'gwt.react.redux.todo_with_undo.todowithundo'
     modules 'gwt.react.widget_interop.widget_interop'
     modules 'gwt.react.preact_sanity_test.preactsanitytest'
 
     dependencies {
         gwt group: 'com.github.gwtreact', name: 'gwt-interop-utils', version: '0.2.+'
         gwt group: 'com.github.gwtreact', name: 'gwt-react', version: '0.5.+'
-        gwt group: 'com.github.gwtreact', name: 'gwt-redux', version: '0.4.+'
-        gwt group: 'com.github.gwtreact', name: 'gwt-mobx', version: '0.5.+'
         gwt group: 'com.github.gwtreact', name: 'gwt-react-router', version: '0.4.+'
     }
 
