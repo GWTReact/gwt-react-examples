@@ -42,7 +42,7 @@ dependencies {
 }
 
 gwt {
-    gwtVersion "2.8.0"
+    gwtVersion "2.8.1"
 
     eclipse.addGwtContainer = false;
 
@@ -56,9 +56,9 @@ gwt {
     modules 'gwt.react.preact_sanity_test.preactsanitytest'
 
     dependencies {
-        gwt group: 'com.github.gwtreact', name: 'gwt-interop-utils', version: '0.2.+'
-        gwt group: 'com.github.gwtreact', name: 'gwt-react', version: '0.5.+'
-        gwt group: 'com.github.gwtreact', name: 'gwt-react-router', version: '0.4.+'
+        gwt group: 'com.github.gwtreact', name: 'gwt-interop-utils', version: '0.4.+'
+        gwt group: 'com.github.gwtreact', name: 'gwt-react', version: '0.6.+'
+        gwt group: 'com.github.gwtreact', name: 'gwt-react-router', version: '0.5.+'
     }
 
     superDev {
