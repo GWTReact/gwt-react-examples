@@ -63,11 +63,4 @@ public class StatefulExample2 extends Component<BaseProps, StatefulExample2.Stat
 				)
 		);
 	}
-
-	//You cannot pass the Class directly to React.createElement if you have renamed the JsType or
-	//disabled class meta data using (-XnoclassMetadata) . In this case, you need to use ComponentUtils.getCtorFn
-	//to get the constructor function
-	public static ComponentConstructorFn<BaseProps> component() {
-		return getCtorFn(StatefulExample2.class, "RenamedStatefulExample2");
-	}
 }

@@ -37,7 +37,7 @@ public class App implements EntryPoint {
                 ),
                 React.createElement(StatefulExample.class, statefulCompProps),
 		        //The following creates an element using a ComponentConstructorFn
-                React.createElement(StatefulExample2.component(), null)
+                React.createElement(StatefulExample2.class, null)
             );
 
         ReactDOM.render(appComp, Document.get().getElementById("mainCont"), () -> Window.alert("Rendered"));
