@@ -107,7 +107,7 @@ class TodoItem extends Component<TodoItem.TodoItemProps, TodoItem.TodoState> {
         }
     }
 
-    public ReactElement<?, ?> render() {
+    public ReactElement render() {
         return
             li(new HtmlProps()
                     .className(Classnames.get("completed", props.todo.completed, "editing", props.isEditing)),

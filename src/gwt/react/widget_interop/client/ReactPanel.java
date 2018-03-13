@@ -9,9 +9,9 @@ import gwt.react.client.elements.ReactElement;
 
 public class ReactPanel extends Widget {
     DivElement container;
-    ReactElement<?, ?> elementToRender;
+    ReactElement elementToRender;
 
-    public ReactPanel(ReactElement<?, ?> elementToRender) {
+    public ReactPanel(ReactElement elementToRender) {
         this.elementToRender = elementToRender;
         container = Document.get().createDivElement();
         setElement(container);

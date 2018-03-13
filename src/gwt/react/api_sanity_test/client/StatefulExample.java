@@ -3,7 +3,6 @@ package gwt.react.api_sanity_test.client;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.user.client.Window;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
-import gwt.react.client.components.Component;
 import gwt.react.client.components.PureComponent;
 import gwt.react.client.components.lifecycle.*;
 import gwt.react.client.elements.ReactElement;
@@ -56,7 +55,7 @@ class StatefulExample extends PureComponent<StatefulExample.Props, StatefulExamp
         setState(State.make(val));
     }
 
-    public ReactElement<?, ?> render() {
+    public ReactElement render() {
         return
             div(null,
                 button(new BtnProps()

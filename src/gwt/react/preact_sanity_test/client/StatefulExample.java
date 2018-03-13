@@ -46,7 +46,7 @@ class StatefulExample extends PureComponent<StatefulExample.Props, StatefulExamp
         setState(State.make(val));
     }
 
-    public ReactElement<?, ?> render() {
+    public ReactElement render() {
         return
             div(null,
                 button(new BtnProps()

@@ -6,9 +6,7 @@ import com.google.gwt.user.client.Window;
 import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
 import gwt.react.client.api.ReactDOMServer;
-import gwt.react.client.components.ComponentUtils;
-import gwt.react.client.elements.DOMElement;
-import gwt.react.client.proptypes.html.HtmlProps;
+import gwt.react.client.elements.ReactElement;
 
 import static gwt.react.client.api.React.DOM.div;
 
@@ -20,7 +18,7 @@ public class App implements EntryPoint {
         StatefulExample.Props statefulCompProps = new StatefulExample.Props();
         statefulCompProps.aProp = "aPropValue";
 
-        DOMElement<HtmlProps> appComp =
+        ReactElement appComp =
             div(null,
                 React.createElement(ChildApiTests::countChildrenComponent, null,
                     div(null, "Child 1"),

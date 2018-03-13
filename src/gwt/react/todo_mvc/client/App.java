@@ -22,7 +22,7 @@ public class App implements EntryPoint {
     static final int ENTER_KEY = 13;
 
     static TodoModel model = new TodoModel();
-    private static Array<ReactElement<?, ?>> routes = JsArray.create();
+    private static Array<ReactElement> routes = JsArray.create();
 
     private void render() {
         ReactDOM.render(
