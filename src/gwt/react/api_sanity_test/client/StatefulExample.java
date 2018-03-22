@@ -3,7 +3,7 @@ package gwt.react.api_sanity_test.client;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.user.client.Window;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
-import gwt.react.client.components.PureComponent;
+import gwt.react.client.components.Component;
 import gwt.react.client.components.lifecycle.*;
 import gwt.react.client.elements.ReactElement;
 import gwt.react.client.events.FormEvent;
@@ -19,7 +19,7 @@ import static gwt.react.client.api.React.DOM.*;
  * they help with type checking
  */
 @JsType
-class StatefulExample extends PureComponent<StatefulExample.Props, StatefulExample.State> implements
+class StatefulExample extends Component<StatefulExample.Props, StatefulExample.State> implements
         ComponentWillMount,
         ComponentDidMount,
         ComponentWillReceiveProps<StatefulExample.Props>,

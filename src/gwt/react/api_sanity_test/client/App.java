@@ -1,6 +1,7 @@
 package gwt.react.api_sanity_test.client;
 
 import static gwt.react.client.api.React.DOM.div;
+import static gwt.react.client.api.React.DOM.fragment;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Document;
@@ -10,6 +11,7 @@ import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
 import gwt.react.client.api.ReactDOMServer;
 import gwt.react.client.elements.ReactElement;
+import gwt.react.client.proptypes.FragmentProps;
 
 public class App implements EntryPoint {
 
@@ -21,6 +23,10 @@ public class App implements EntryPoint {
 
         ReactElement appComp =
             div(null,
+		        ReactDOM.createPortal(
+		        	div(null, "This is in a portal!"), Document.get().getElementById("portalCont")
+		        ),
+
                 React.createElement(ChildApiTests.countChildrenComponent, null,
                     div(null, "Child 1"),
                     div(null, "Child 2")
@@ -34,10 +40,20 @@ public class App implements EntryPoint {
                     div(null, "Child 1 should be red"),
                     div(null, "Child 2 should be red (should be the last child)")
                 ),
-                React.createElement(StatefulExample.class, statefulCompProps)
+                React.createElement(StatefulExample.class, statefulCompProps),
+
+		        React.createElement(ComponentDidCatchExample.class, statefulCompProps),
+		        fragment(
+	                div(null, "Child of fragment")
+		        ),
+		        fragment(new FragmentProps().key("1"),
+			        div(null, "Child of fragment with key")
+		        )
             );
 
         ReactDOM.render(appComp, Document.get().getElementById("mainCont"), () -> Window.alert("Rendered"));
+
+
 
         Window.alert("renderToString returned: '" + ReactDOMServer.renderToString(div(null, "a div")) + "'");
     }
