@@ -1,6 +1,6 @@
 package gwt.react.todo_mvc.client;
 
-import com.google.gwt.dom.client.InputElement;
+import elemental2.dom.HTMLInputElement;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.interop.utils.shared.collections.Array;
 import gwt.react.client.api.React;
@@ -87,7 +87,7 @@ class TodoList extends Component<TodoList.TodoListProps, TodoList.TodoListState>
     }
 
     private void handleToggleAll(FormEvent event) {
-        App.model.toggleAll(InputElement.as(event.target).isChecked());
+        App.model.toggleAll(((HTMLInputElement)event.target).checked);
     }
 
     private void handleNewTodoKeyDown(KeyboardEvent event) {
@@ -106,7 +106,7 @@ class TodoList extends Component<TodoList.TodoListProps, TodoList.TodoListState>
     }
 
     private void handleChange(FormEvent event) {
-        setState($(new TodoListState(),"newTodo", InputElement.as(event.target).getValue()));
+        setState($(new TodoListState(),"newTodo", (((HTMLInputElement)event.target).value)));
     }
 
     public ReactElement render() {

@@ -1,7 +1,7 @@
 package gwt.react.preact_sanity_test.client;
 
-import com.google.gwt.dom.client.InputElement;
-import com.google.gwt.user.client.Window;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLInputElement;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.react.client.components.PureComponent;
 import gwt.react.client.elements.ReactElement;
@@ -41,8 +41,8 @@ class StatefulExample extends PureComponent<StatefulExample.Props, StatefulExamp
     }
 
     private void doChange(FormEvent event) {
-        InputElement e = InputElement.as(event.target);
-        String val = e.getValue();
+        HTMLInputElement e = (HTMLInputElement)event.target;
+        String val = e.value;
         setState(State.make(val));
     }
 
@@ -64,32 +64,32 @@ class StatefulExample extends PureComponent<StatefulExample.Props, StatefulExamp
     //Optional lifecycle methods
 
     public void componentWillMount() {
-        Window.alert("componentWillMount called");
+        DomGlobal.alert("componentWillMount called");
     }
 
     public void componentDidMount() {
-        Window.alert("componentDidMount called");
+        DomGlobal.alert("componentDidMount called");
     }
 
     public void componentWillReceiveProps(Props nextProps) {
-        Window.alert("componentWillReceiveProps called (nextProps "+ nextProps.toJSONString() + ")");
+        DomGlobal.alert("componentWillReceiveProps called (nextProps "+ nextProps.toJSONString() + ")");
     }
 
     public boolean shouldComponentUpdate(Props nextProps, State nextState) {
-        Window.alert("shouldComponentUpdate called (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
+        DomGlobal.alert("shouldComponentUpdate called (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
         return true;
     }
 
     public void componentWillUpdate(Props nextProps, State nextState) {
-        Window.alert("componentWillUpdate called  (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
+        DomGlobal.alert("componentWillUpdate called  (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
     }
 
     public void componentDidUpdate(Props prevProps, State prevState) {
-        Window.alert("componentDidUpdate called (prevProps "+ prevProps.toJSONString() + " prevState " + prevState.toJSONString() + ")");
+        DomGlobal.alert("componentDidUpdate called (prevProps "+ prevProps.toJSONString() + " prevState " + prevState.toJSONString() + ")");
     }
 
     public void componentWillUnmount() {
-        Window.alert("componentWillUnmount called");
+        DomGlobal.alert("componentWillUnmount called");
     }
 
     private String getDescription() {

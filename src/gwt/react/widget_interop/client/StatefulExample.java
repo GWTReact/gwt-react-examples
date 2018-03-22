@@ -1,6 +1,6 @@
 package gwt.react.widget_interop.client;
 
-import com.google.gwt.dom.client.InputElement;
+import elemental2.dom.HTMLInputElement;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.react.client.components.Component;
 import gwt.react.client.elements.ReactElement;
@@ -40,8 +40,8 @@ class StatefulExample extends Component<StatefulExample.Props, StatefulExample.S
     }
 
     private void doChange(FormEvent event) {
-        InputElement e = InputElement.as(event.target);
-        String val = e.getValue();
+        HTMLInputElement e = (HTMLInputElement)event.target;
+        String val = e.value;
         setState(State.make(val));
     }
 

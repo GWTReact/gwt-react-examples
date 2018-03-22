@@ -4,9 +4,8 @@ import static gwt.react.client.api.React.DOM.div;
 import static gwt.react.client.api.React.DOM.fragment;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.Window;
 
+import elemental2.dom.DomGlobal;
 import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
 import gwt.react.client.api.ReactDOMServer;
@@ -24,7 +23,7 @@ public class App implements EntryPoint {
         ReactElement appComp =
             div(null,
 		        ReactDOM.createPortal(
-		        	div(null, "This is in a portal!"), Document.get().getElementById("portalCont")
+		        	div(null, "This is in a portal!"), DomGlobal.document.getElementById("portalCont")
 		        ),
 
                 React.createElement(ChildApiTests.countChildrenComponent, null,
@@ -51,10 +50,8 @@ public class App implements EntryPoint {
 		        )
             );
 
-        ReactDOM.render(appComp, Document.get().getElementById("mainCont"), () -> Window.alert("Rendered"));
+        ReactDOM.render(appComp, DomGlobal.document.getElementById("mainCont"), () -> DomGlobal.alert("Rendered"));
 
-
-
-        Window.alert("renderToString returned: '" + ReactDOMServer.renderToString(div(null, "a div")) + "'");
+	    DomGlobal.alert("renderToString returned: '" + ReactDOMServer.renderToString(div(null, "a div")) + "'");
     }
 }

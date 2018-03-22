@@ -1,8 +1,7 @@
 package gwt.react.preact_sanity_test.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.Window;
+import elemental2.dom.DomGlobal;
 import gwt.react.client.api.React;
 import gwt.react.client.api.ReactDOM;
 import gwt.react.client.api.ReactDOMServer;
@@ -34,12 +33,12 @@ public class App implements EntryPoint {
                     div(null, "Child 2 should be red (should be the last child)")
                 ),
                 React.createElement(StatefulExample.class, statefulCompProps),
-		        //The following creates an element using a ComponentConstructorFn
+		        //The following creates an element using a class
                 React.createElement(StatefulExample2.class, null)
             );
 
-        ReactDOM.render(appComp, Document.get().getElementById("mainCont"), () -> Window.alert("Rendered"));
+        ReactDOM.render(appComp, DomGlobal.document.getElementById("mainCont"), () -> DomGlobal.alert("Rendered"));
 
-        Window.alert("renderToString returned: '" + ReactDOMServer.renderToString(div(null, "a div")) + "'");
+	    DomGlobal.alert("renderToString returned: '" + ReactDOMServer.renderToString(div(null, "a div")) + "'");
     }
 }

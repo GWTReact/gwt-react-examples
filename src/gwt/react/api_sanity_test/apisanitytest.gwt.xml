@@ -3,6 +3,8 @@
     <!-- Inherit the core Web Toolkit stuff.                        -->
     <inherits name='com.google.gwt.user.User' />
     <inherits name="com.google.gwt.resources.Resources" />
+    <inherits name="elemental2.dom.Dom"/>
+    <inherits name="elemental2.core.Core"/>
     <inherits name="gwt.interop.utils.InteropUtils" />
     <inherits name="gwt.react.React" />
 

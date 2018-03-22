@@ -1,6 +1,6 @@
 package gwt.react.todo_mvc.client;
 
-import com.google.gwt.dom.client.InputElement;
+import elemental2.dom.HTMLInputElement;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
 import gwt.interop.utils.shared.functional.JsBiConsumer;
 import gwt.react.client.components.Component;
@@ -74,7 +74,7 @@ class TodoItem extends Component<TodoItem.TodoItemProps, TodoItem.TodoState> {
 
     private void handleChange(FormEvent event) {
         if (props.isEditing) {
-            setState(newTodoItemState(InputElement.as(event.target).getValue()));
+            setState(newTodoItemState(((HTMLInputElement)event.target).value));
         }
     }
 
@@ -101,7 +101,7 @@ class TodoItem extends Component<TodoItem.TodoItemProps, TodoItem.TodoState> {
     public void componentDidUpdate(TodoItemProps prevProps, TodoItemProps prevState) {
 
         if (!prevProps.isEditing && props.isEditing) {
-            InputElement inputEl = InputElement.as((InputElement)this.refs.get("editField"));
+            HTMLInputElement inputEl = (HTMLInputElement)this.refs.get("editField");
             inputEl.focus();
             inputEl.select();
         }
