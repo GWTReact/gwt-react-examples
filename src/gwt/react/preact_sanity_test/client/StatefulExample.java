@@ -55,7 +55,7 @@ class StatefulExample extends PureComponent<StatefulExample.Props, StatefulExamp
                     getDescription()),
 
                 input(new InputProps()
-                    .placeHolder("What needs to be done?")
+                    .placeholder("What needs to be done?")
                     .value(state.aStateVar)
                     .onChange(this::doChange))
             );

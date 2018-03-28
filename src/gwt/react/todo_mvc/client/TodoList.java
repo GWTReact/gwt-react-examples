@@ -173,7 +173,7 @@ class TodoList extends Component<TodoList.TodoListProps, TodoList.TodoListState>
                         h1(null, "todos"),
                         input(new InputProps()
                                 .className("new-todo")
-                                .placeHolder("What needs to be done?")
+                                .placeholder("What needs to be done?")
                                 .value(state.newTodo)
                                 .onKeyDown(this::handleNewTodoKeyDown)
                                 .onChange(this::handleChange)
