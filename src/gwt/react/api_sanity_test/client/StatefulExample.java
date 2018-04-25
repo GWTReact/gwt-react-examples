@@ -1,8 +1,12 @@
 package gwt.react.api_sanity_test.client;
 
+import com.google.gwt.core.client.GWT;
 import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLInputElement;
 import gwt.interop.utils.client.plainobjects.JsPlainObj;
+import gwt.react.client.api.React;
+import gwt.react.client.api.ReactRef;
 import gwt.react.client.components.Component;
 import gwt.react.client.components.lifecycle.*;
 import gwt.react.client.elements.ReactElement;
@@ -25,9 +29,11 @@ class StatefulExample extends Component<StatefulExample.Props, StatefulExample.S
         ComponentWillReceiveProps<StatefulExample.Props>,
         ShouldComponentUpdate<StatefulExample.Props, StatefulExample.State>,
         ComponentDidUpdate<StatefulExample.Props, StatefulExample.State>,
-        ComponentWillUnmount {
+        ComponentWillUnmount,
+		GetSnapshotBeforeUpdate<StatefulExample.Props, StatefulExample.State>{
 
-    @JsType(isNative = true, namespace = JsPackage.GLOBAL, name="Object")
+
+	@JsType(isNative = true, namespace = JsPackage.GLOBAL, name="Object")
     static class Props extends BaseProps {
         String aProp;
     }
@@ -44,6 +50,8 @@ class StatefulExample extends Component<StatefulExample.Props, StatefulExample.S
         }
     }
 
+    private ReactRef<HTMLButtonElement> btnRef = React.createRef();
+
     public StatefulExample(StatefulExample.Props props) {
         super(props);
         this.state = State.make("Initial Value");
@@ -56,9 +64,12 @@ class StatefulExample extends Component<StatefulExample.Props, StatefulExample.S
     }
 
     public ReactElement render() {
+    	GWT.log("btnRef = " + btnRef.current);
+
         return
             div(null,
                 button(new BtnProps()
+		            .ref(btnRef)
                     .title("Some title")
                     .onClick((e) -> setState(State.make("Updated Value"))),
                     getDescription()),
@@ -71,6 +82,11 @@ class StatefulExample extends Component<StatefulExample.Props, StatefulExample.S
     }
 
     //Optional lifecycle methods
+
+	public static State getDerivedStateFromProps(Props nextProps, State prevState) {
+		DomGlobal.alert("getDerivedStateFromProps called (nextProps "+ nextProps.toJSONString() + " nextState " + prevState.toJSONString() + ")");
+		return null; //Do nothing
+	}
 
     public void componentWillMount() {
         DomGlobal.alert("componentWillMount called");
@@ -93,9 +109,13 @@ class StatefulExample extends Component<StatefulExample.Props, StatefulExample.S
 	    DomGlobal.alert("componentWillUpdate called  (nextProps "+ nextProps.toJSONString() + " nextState " + nextState.toJSONString() + ")");
     }
 
-    public void componentDidUpdate(Props prevProps, State prevState) {
-	    DomGlobal.alert("componentDidUpdate called (prevProps "+ prevProps.toJSONString() + " prevState " + prevState.toJSONString() + ")");
+    public void componentDidUpdate(Props prevProps, State prevState, Object snapshotValue) {
+	    DomGlobal.alert("componentDidUpdate called (prevProps "+ prevProps.toJSONString() + " prevState " + prevState.toJSONString() + "snapshot " +  snapshotValue + ")");
     }
+
+	public Object getSnapshotBeforeUpdate(Props prevProps, State prevState) {
+		return "TestSnapshot";
+	}
 
     public void componentWillUnmount() {
 	    DomGlobal.alert("componentWillUnmount called");
