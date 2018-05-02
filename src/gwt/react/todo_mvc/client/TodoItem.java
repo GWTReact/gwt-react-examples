@@ -117,7 +117,7 @@ class TodoItem extends Component<TodoItem.TodoItemProps, TodoItem.TodoState> {
                             .type(InputType.checkbox).checked(props.todo.completed)
                             .onChange((event) -> props.doAction.accept(TodoList.Action.TOGGLE, props.todo))),
                     label(new LabelProps()
-                            .OnDoubleClick(this::handleEdit), props.todo.title),
+                            .onDoubleClick(this::handleEdit), props.todo.title),
                     button(new BtnProps()
                             .className("destroy")
                             .onClick((event) -> props.doAction.accept(TodoList.Action.DESTROY, props.todo)))

@@ -46,7 +46,7 @@ public class StatefulExample2 extends Component<BaseProps, StatefulExample2.Stat
 		return
 			div(null,
 				label(new LabelProps()
-						.HtmlFor("checkField"),
+						.htmlFor("checkField"),
 						"Click me "
 				),
 				input(new InputProps()
